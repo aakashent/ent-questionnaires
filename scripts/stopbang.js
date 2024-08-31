@@ -1,36 +1,47 @@
 function getStopBangForm() {
     return `
         <h3>STOP-Bang Questionnaire</h3>
-        ${generateStopBangQuestions()}
-        <button type="button" onclick="calculateStopBang()">Calculate Score</button>
+        <form id="stopbangForm">
+            ${generateStopBangQuestions()}
+            <button type="button" onclick="calculateStopBang()">Calculate Score</button>
+        </form>
     `;
 }
 
 function generateStopBangQuestions() {
     return `
-        <label>Snoring:</label>
-        <input type="checkbox" id="snoring"> Do you snore loudly (louder than talking or loud enough to be heard through closed doors)?<br>
-        
-        <label>Tiredness:</label>
-        <input type="checkbox" id="tiredness"> Do you often feel tired, fatigued, or sleepy during daytime?<br>
-        
-        <label>Observed Apnoea:</label>
-        <input type="checkbox" id="apnoea"> Has anyone observed you stop breathing during your sleep?<br>
-        
-        <label>Blood Pressure:</label>
-        <input type="checkbox" id="bp"> Do you have or are you being treated for high blood pressure?<br>
-        
-        <label>BMI > 35 kg/m²:</label>
-        <input type="checkbox" id="bmi"> Is your BMI greater than 35 kg/m²?<br>
-        
-        <label>Age > 50:</label>
-        <input type="checkbox" id="age"> Are you older than 50 years?<br>
-        
-        <label>Neck circumference > 40 cm:</label>
-        <input type="checkbox" id="neck"> Is your neck circumference greater than 40 cm?<br>
-        
-        <label>Gender:</label>
-        <input type="checkbox" id="gender"> Are you male?<br>
+        <div class="question-row">
+            <label>Snoring:</label>
+            <input type="checkbox" id="snoring">
+        </div>
+        <div class="question-row">
+            <label>Tiredness:</label>
+            <input type="checkbox" id="tiredness">
+        </div>
+        <div class="question-row">
+            <label>Observed Apnoea:</label>
+            <input type="checkbox" id="apnoea">
+        </div>
+        <div class="question-row">
+            <label>Blood Pressure:</label>
+            <input type="checkbox" id="bp">
+        </div>
+        <div class="question-row">
+            <label>BMI > 35 kg/m²:</label>
+            <input type="checkbox" id="bmi">
+        </div>
+        <div class="question-row">
+            <label>Age > 50:</label>
+            <input type="checkbox" id="age">
+        </div>
+        <div class="question-row">
+            <label>Neck circumference > 40 cm:</label>
+            <input type="checkbox" id="neck">
+        </div>
+        <div class="question-row">
+            <label>Gender:</label>
+            <input type="checkbox" id="gender"> Are you male?
+        </div>
     `;
 }
 
@@ -46,5 +57,14 @@ function calculateStopBang() {
         detailedText += `<strong>${id.charAt(0).toUpperCase() + id.slice(1)}:</strong> ${document.getElementById(id).checked ? 'Yes' : 'No'}<br>`;
     });
 
-    showResult(`STOP-Bang Score: ${totalScore}`, detailedText);
+    let interpretationText = '';
+    if (totalScore <= 2) {
+        interpretationText = "Low risk of OSA.";
+    } else if (totalScore <= 4) {
+        interpretationText = "Intermediate risk of OSA.";
+    } else {
+        interpretationText = "High risk of OSA.";
+    }
+
+    showResult(`STOP-Bang Score: ${totalScore}`, interpretationText, detailedText);
 }
