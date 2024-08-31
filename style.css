@@ -21,7 +21,7 @@ body {
 
 /* Left side: Scores and Questions */
 .left-panel {
-    width: 30%;
+    width: 65%; /* Make the left panel wider to accommodate more space */
 }
 
 .header {
@@ -29,9 +29,8 @@ body {
 }
 
 .questionnaire-list {
-    margin-bottom: 20px;
     background-color: #00796b; /* Dark teal background */
-    padding: 15px;
+    padding: 20px;
     border-radius: 10px;
     color: white;
 }
@@ -40,8 +39,7 @@ body {
 .questionnaire {
     display: flex;
     flex-direction: column;
-    flex: 1;
-    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
 .question-row {
@@ -51,7 +49,7 @@ body {
 }
 
 .question-text {
-    flex: 2;
+    flex: 1; /* Increased width */
     padding: 10px;
     background-color: #00796b;
     color: white;
@@ -60,14 +58,19 @@ body {
 }
 
 .answer-input {
-    flex: 1;
+    flex: 1; /* Ensure answers take up equal space */
 }
 
-.answer-input select, .answer-input input {
+.answer-input select, .answer-input input[type="checkbox"] {
     width: 100%;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    background-color: white;
+}
+
+.answer-input input[type="range"] {
+    width: 100%; /* Full width for sliders */
     background-color: white;
 }
 
