@@ -72,7 +72,7 @@ body {
 }
 
 .question-text {
-    flex: 2; /* Increased width */
+    flex: 2; /* Increased width to maintain label and input spacing */
     padding: 10px;
     background-color: #00796b;
     color: white;
@@ -83,19 +83,27 @@ body {
 }
 
 .answer-input {
-    flex: 1; /* Ensure answers take up equal space */
+    flex: 1;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
 }
 
+/* Ensure all inputs have similar height for alignment */
 .answer-input select, 
 .answer-input input[type="checkbox"], 
 .answer-input input[type="range"] {
-    width: 100%;
+    width: auto;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
     background-color: white;
+    margin-left: 10px;
+}
+
+.answer-input input[type="checkbox"] {
+    width: auto; /* Ensure checkbox doesn't stretch */
+    height: auto; /* Allow height to adjust for alignment */
 }
 
 /* Right side: Results */
