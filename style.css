@@ -72,28 +72,29 @@ body {
 }
 
 .question-text {
-    flex: 1; /* Increased width */
+    flex: 2; /* Increased width */
     padding: 10px;
     background-color: #00796b;
     color: white;
     border-radius: 10px;
     margin-right: 10px;
+    display: flex;
+    align-items: center;
 }
 
 .answer-input {
     flex: 1; /* Ensure answers take up equal space */
+    display: flex;
+    align-items: center;
 }
 
-.answer-input select, .answer-input input[type="checkbox"] {
+.answer-input select, 
+.answer-input input[type="checkbox"], 
+.answer-input input[type="range"] {
     width: 100%;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    background-color: white;
-}
-
-.answer-input input[type="range"] {
-    width: 100%; /* Full width for sliders */
     background-color: white;
 }
 
