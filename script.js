@@ -22,7 +22,7 @@ function loadScoreForm() {
     }
 }
 
-function showResult(resultText, detailedText) {
+function showResult(resultText, interpretationText, detailedText) {
     const resultDiv = document.getElementById("result");
     resultDiv.innerHTML = ''; // Clear previous result content
 
@@ -30,11 +30,16 @@ function showResult(resultText, detailedText) {
     scoreResult.id = 'scoreResult';
     scoreResult.textContent = resultText;
 
+    const interpretation = document.createElement('p');
+    interpretation.id = 'interpretation';
+    interpretation.textContent = interpretationText;
+
     const detailedResult = document.createElement('div');
     detailedResult.id = 'detailedResult';
     detailedResult.innerHTML = detailedText;
 
     resultDiv.appendChild(scoreResult);
+    resultDiv.appendChild(interpretation);
     resultDiv.appendChild(detailedResult);
     resultDiv.appendChild(createCopyButtons());
 
