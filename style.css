@@ -4,28 +4,32 @@ body {
     background-color: #f9f9f9;
     margin: 0;
     padding: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
+/* Container for questions and answers */
 .container {
-    max-width: 800px;
-    margin: auto;
-    background: #ffffff;
+    background: #e0f7fa; /* A light teal background */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
-
-/* Header styling */
-h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Form styling */
-form {
     display: flex;
-    flex-direction: column;
+    width: 60%; /* Adjusting width for space allocation */
+    margin-right: 20px;
+}
+
+.questions-frame {
+    background-color: #00796b; /* A dark teal for the question background */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1;
+}
+
+.answers-frame {
+    flex: 1;
+    padding-left: 20px;
 }
 
 .question-row {
@@ -33,58 +37,26 @@ form {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #6c757d;
-    color: white;
 }
 
 .question-row label {
-    flex: 1;
-    margin-right: 20px;
+    margin-bottom: 10px;
+    display: block;
 }
 
-.question-row input[type="range"],
-.question-row input[type="checkbox"] {
-    flex: 1;
-    background-color: white;
-    padding: 5px;
+/* Answer styling */
+input[type="range"],
+select {
+    width: 100%;
+    padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
-}
-
-.question-row p {
-    margin: 0;
-    padding-left: 10px;
-    color: #333;
     background-color: white;
-    border-radius: 5px;
 }
 
-/* Buttons */
-button {
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-right: 10px;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-}
-
-/* Result styling */
+/* Result section */
 #result {
-    margin-top: 20px;
+    width: 35%; /* Allocating space for the result on the right */
     padding: 20px;
     background-color: #f8f9fa;
     border-radius: 10px;
@@ -93,15 +65,16 @@ button:disabled {
 }
 
 #scoreResult {
-    font-size: 18px;
+    font-size: 24px;
     color: #333;
     margin-bottom: 15px;
+    font-weight: bold;
 }
 
 #interpretation {
-    font-size: 16px;
+    font-size: 18px;
     color: #007bff;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 #copyButtons {
