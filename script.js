@@ -10,30 +10,32 @@ function loadScoreForm() {
     document.getElementById("scoreResult").textContent = "";
     document.getElementById("interpretation").textContent = "";
 
-    // Display the result container initially hidden
-    resultContainer.style.display = "block";
+    // Ensure result box is displayed when needed
+    resultContainer.style.display = "none"; // Hide initially
 
     switch (scoreType) {
         case "epworth":
             scoreFormContainer.innerHTML = getEpworthForm();
             calculateEpworth(); // Initialize calculation for Epworth
+            resultContainer.style.display = "block"; // Show result box
             break;
         case "stopbang":
             scoreFormContainer.innerHTML = getStopBangForm();
             calculateStopBang(); // Initialize calculation for STOP-Bang
+            resultContainer.style.display = "block"; // Show result box
             break;
         case "nose":
             scoreFormContainer.innerHTML = getNoseForm();
-            // Initialize calculation after DOM is ready
             setTimeout(() => {
-                calculateNose();
+                calculateNose(); // Initialize calculation after DOM is ready
+                resultContainer.style.display = "block"; // Show result box
             }, 0);
             break;
         case "edtq7":
             scoreFormContainer.innerHTML = getEdtq7Form();
-            // Initialize calculation after DOM is ready
             setTimeout(() => {
-                calculateEdtq7();
+                calculateEdtq7(); // Initialize calculation after DOM is ready
+                resultContainer.style.display = "block"; // Show result box
             }, 0);
             break;
         default:
