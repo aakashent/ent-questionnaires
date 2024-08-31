@@ -5,48 +5,65 @@ body {
     margin: 0;
     padding: 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
-/* Container for questions and answers */
 .container {
-    background: #e0f7fa; /* A light teal background */
-    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    display: flex;
-    width: 60%; /* Adjusting width for space allocation */
-    margin-right: 20px;
-}
-
-.questions-frame {
-    background-color: #00796b; /* A dark teal for the question background */
-    color: white;
     padding: 20px;
-    border-radius: 10px;
-    flex: 1;
 }
 
-.answers-frame {
+/* Left side: Scores and Questions */
+.left-panel {
+    width: 30%;
+}
+
+.header {
+    margin-bottom: 20px;
+}
+
+.questionnaire-list {
+    margin-bottom: 20px;
+    background-color: #00796b; /* Dark teal background */
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+}
+
+/* Middle: Questions and Answers */
+.questionnaire {
+    display: flex;
+    flex-direction: column;
     flex: 1;
-    padding-left: 20px;
+    margin-right: 20px;
 }
 
 .question-row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     margin-bottom: 20px;
 }
 
-.question-row label {
-    margin-bottom: 10px;
-    display: block;
+.question-text {
+    flex: 2;
+    padding: 10px;
+    background-color: #00796b;
+    color: white;
+    border-radius: 10px;
+    margin-right: 10px;
 }
 
-/* Answer styling */
-input[type="range"],
-select {
+.answer-input {
+    flex: 1;
+}
+
+.answer-input select, .answer-input input {
     width: 100%;
     padding: 10px;
     border-radius: 5px;
@@ -54,9 +71,9 @@ select {
     background-color: white;
 }
 
-/* Result section */
-#result {
-    width: 35%; /* Allocating space for the result on the right */
+/* Right side: Results */
+.results-panel {
+    width: 30%;
     padding: 20px;
     background-color: #f8f9fa;
     border-radius: 10px;
@@ -79,12 +96,18 @@ select {
 
 #copyButtons {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-around;
 }
 
 #copyButtons button {
     background-color: #007bff;
-    margin-left: 10px;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 45%;
 }
 
 #copyButtons button:hover {
