@@ -86,6 +86,7 @@ body {
 .scale-text {
     text-align: center;
     color: #fff;
+    font-size: 12px; /* Smaller text for the scale */
 }
 
 .answer-input {
@@ -101,6 +102,23 @@ body {
     border-radius: 5px;
     border: 1px solid #ccc;
     background-color: white;
+}
+
+.answer-input button {
+    padding: 10px;
+    margin: 0 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+}
+
+.answer-input button.selected {
+    background-color: #0056b3;
+    color: white;
 }
 
 /* Right side: Results */
