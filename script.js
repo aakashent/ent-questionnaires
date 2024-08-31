@@ -16,22 +16,24 @@ function loadScoreForm() {
     switch (scoreType) {
         case "epworth":
             scoreFormContainer.innerHTML = getEpworthForm();
-            calculateEpworth(); // Initialize calculation
+            calculateEpworth(); // Initialize calculation for Epworth
             break;
         case "stopbang":
             scoreFormContainer.innerHTML = getStopBangForm();
-            calculateStopBang(); // Initialize calculation
+            calculateStopBang(); // Initialize calculation for STOP-Bang
             break;
         case "nose":
             scoreFormContainer.innerHTML = getNoseForm();
+            // Initialize calculation after DOM is ready
             setTimeout(() => {
-                calculateNose(); // Initialize calculation after the DOM is ready
+                calculateNose();
             }, 0);
             break;
         case "edtq7":
             scoreFormContainer.innerHTML = getEdtq7Form();
+            // Initialize calculation after DOM is ready
             setTimeout(() => {
-                calculateEdtq7(); // Initialize calculation after the DOM is ready
+                calculateEdtq7();
             }, 0);
             break;
         default:
