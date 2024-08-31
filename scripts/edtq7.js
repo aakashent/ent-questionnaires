@@ -1,49 +1,50 @@
 function getEdtq7Form() {
     return `
         <h3>EDTQ-7 Questionnaire</h3>
-        ${generateEdtq7Questions()}
-        <button type="button" onclick="calculateEdtq7()">Calculate Score</button>
+        <form id="edtq7Form">
+            ${generateEdtq7Questions()}
+            <button type="button" onclick="calculateEdtq7()">Calculate Score</button>
+        </form>
     `;
 }
 
 function generateEdtq7Questions() {
     return `
-        <label>A sensation of fullness in the ear:</label>
-        <input type="range" min="0" max="4" step="1" value="0" id="fullness">
-        <p>Value: <span id="fullnessValue">0</span></p>
-
-        <label>A sensation of "popping" in the ear:</label>
-        <input type="range" min="0" max="4" step="1" value="0" id="popping">
-        <p>Value: <span id="poppingValue">0</span></p>
-
-        <label>A sensation of discomfort in the ear:</label>
-        <input type="range" min="0" max="4" step="1" value="0" id="discomfort">
-        <p>Value: <span id="discomfortValue">0</span></p>
-
-        <label>A sensation of muffled hearing:</label>
-        <input type="range" min="0" max="4" step="1" value="0" id="muffled">
-        <p>Value: <span id="muffledValue">0</span></p>
-
-        <label>Difficulty hearing:</label>
-        <input type="range" min="0" max="4" step="1" value="0" id="hearingDifficulty">
-        <p>Value: <span id="hearingDifficultyValue">0</span></p>
-
-        <label>A sensation of imbalance or dizziness:</label>
-        <input type="range" min="0" max="4" step="1" value="0" id="dizziness">
-        <p>Value: <span id="dizzinessValue">0</span></p>
-
-        <label>Overall discomfort due to ear symptoms:</label>
-        <input type="range" min="0" max="4" step="1" value="0" id="overallDiscomfort">
-        <p>Value: <span id="overallDiscomfortValue">0</span></p>
-
-        <script>
-        document.querySelectorAll('input[type="range"]').forEach(slider => {
-            slider.addEventListener('input', (e) => {
-                const valueDisplay = document.getElementById(e.target.id + 'Value');
-                valueDisplay.textContent = e.target.value;
-            });
-        });
-        </script>
+        <div class="question-row">
+            <label>A sensation of fullness in the ear:</label>
+            <input type="range" min="0" max="4" step="1" value="0" id="fullness" oninput="document.getElementById('fullnessValue').textContent = this.value">
+            <p><span id="fullnessValue">0</span></p>
+        </div>
+        <div class="question-row">
+            <label>A sensation of "popping" in the ear:</label>
+            <input type="range" min="0" max="4" step="1" value="0" id="popping" oninput="document.getElementById('poppingValue').textContent = this.value">
+            <p><span id="poppingValue">0</span></p>
+        </div>
+        <div class="question-row">
+            <label>A sensation of discomfort in the ear:</label>
+            <input type="range" min="0" max="4" step="1" value="0" id="discomfort" oninput="document.getElementById('discomfortValue').textContent = this.value">
+            <p><span id="discomfortValue">0</span></p>
+        </div>
+        <div class="question-row">
+            <label>A sensation of muffled hearing:</label>
+            <input type="range" min="0" max="4" step="1" value="0" id="muffled" oninput="document.getElementById('muffledValue').textContent = this.value">
+            <p><span id="muffledValue">0</span></p>
+        </div>
+        <div class="question-row">
+            <label>Difficulty hearing:</label>
+            <input type="range" min="0" max="4" step="1" value="0" id="hearingDifficulty" oninput="document.getElementById('hearingDifficultyValue').textContent = this.value">
+            <p><span id="hearingDifficultyValue">0</span></p>
+        </div>
+        <div class="question-row">
+            <label>A sensation of imbalance or dizziness:</label>
+            <input type="range" min="0" max="4" step="1" value="0" id="dizziness" oninput="document.getElementById('dizzinessValue').textContent = this.value">
+            <p><span id="dizzinessValue">0</span></p>
+        </div>
+        <div class="question-row">
+            <label>Overall discomfort due to ear symptoms:</label>
+            <input type="range" min="0" max="4" step="1" value="0" id="overallDiscomfort" oninput="document.getElementById('overallDiscomfortValue').textContent = this.value">
+            <p><span id="overallDiscomfortValue">0</span></p>
+        </div>
     `;
 }
 
@@ -58,5 +59,14 @@ function calculateEdtq7() {
         detailedText += `<strong>${id.replace(/([A-Z])/g, ' $1')}:</strong> ${value}<br>`;
     });
 
-    showResult(`EDTQ-7 Score: ${totalScore}`, detailedText);
+    let interpretationText = '';
+    if (totalScore <= 7) {
+        interpretationText = "Mild Eustachian tube dysfunction.";
+    } else if (totalScore <= 14) {
+        interpretationText = "Moderate Eustachian tube dysfunction.";
+    } else {
+        interpretationText = "Severe Eustachian tube dysfunction.";
+    }
+
+    showResult(`EDTQ-7 Score: ${totalScore}`, interpretationText, detailedText);
 }
