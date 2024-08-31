@@ -39,13 +39,19 @@ function generateStopBangQuestions() {
 }
 
 function selectYesNo(id, isYes) {
-    document.getElementById(id + 'Yes').classList.remove('selected');
-    document.getElementById(id + 'No').classList.remove('selected');
-    if (isYes) {
-        document.getElementById(id + 'Yes').classList.add('selected');
-    } else {
-        document.getElementById(id + 'No').classList.add('selected');
+    const yesButton = document.getElementById(id + 'Yes');
+    const noButton = document.getElementById(id + 'No');
+    
+    if (yesButton && noButton) {
+        yesButton.classList.remove('selected');
+        noButton.classList.remove('selected');
+        if (isYes) {
+            yesButton.classList.add('selected');
+        } else {
+            noButton.classList.add('selected');
+        }
     }
+
     calculateStopBang();
 }
 
@@ -55,12 +61,16 @@ function calculateStopBang() {
     let detailedText = "";
 
     formElements.forEach(id => {
-        const isYesSelected = document.getElementById(id + 'Yes').classList.contains('selected');
-        if (isYesSelected) {
+        const yesButton = document.getElementById(id + 'Yes');
+        const noButton = document.getElementById(id + 'No');
+
+        if (yesButton && yesButton.classList.contains('selected')) {
             totalScore += 1;
-            detailedText += `${document.getElementById(id + 'Yes').previousElementSibling.textContent.trim()} Yes\n`;
-        } else {
-            detailedText += `${document.getElementById(id + 'No').previousElementSibling.textContent.trim()} No\n`;
+            const questionText = yesButton.closest('.question-row').querySelector('.question-text').textContent.trim();
+            detailedText += `${questionText} Yes\n`;
+        } else if (noButton) {
+            const questionText = noButton.closest('.question-row').querySelector('.question-text').textContent.trim();
+            detailedText += `${questionText} No\n`;
         }
     });
 
