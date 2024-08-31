@@ -1,7 +1,6 @@
 function getEpworthForm() {
     return `
         <h3>Epworth Sleepiness Scale</h3>
-        <p>How likely are you to doze off or fall asleep in the following situations?</p>
         <form id="epworthForm">
             ${generateEpworthQuestions()}
             <button type="button" onclick="calculateEpworth()">Calculate Score</button>
@@ -11,46 +10,78 @@ function getEpworthForm() {
 
 function generateEpworthQuestions() {
     return `
-        <label>Sitting and reading:</label>
-        <input type="range" min="0" max="3" step="1" value="0" id="reading">
-        <p>Value: <span id="readingValue">0</span></p>
-
-        <label>Watching TV:</label>
-        <input type="range" min="0" max="3" step="1" value="0" id="watchingTV">
-        <p>Value: <span id="watchingTVValue">0</span></p>
-
-        <label>Sitting inactive in a public place (e.g., a theatre or a meeting):</label>
-        <input type="range" min="0" max="3" step="1" value="0" id="publicPlace">
-        <p>Value: <span id="publicPlaceValue">0</span></p>
-
-        <label>As a passenger in a car for an hour without a break:</label>
-        <input type="range" min="0" max="3" step="1" value="0" id="passenger">
-        <p>Value: <span id="passengerValue">0</span></p>
-
-        <label>Lying down to rest in the afternoon when circumstances permit:</label>
-        <input type="range" min="0" max="3" step="1" value="0" id="lyingDown">
-        <p>Value: <span id="lyingDownValue">0</span></p>
-
-        <label>Sitting and talking to someone:</label>
-        <input type="range" min="0" max="3" step="1" value="0" id="talking">
-        <p>Value: <span id="talkingValue">0</span></p>
-
-        <label>Sitting quietly after a lunch without alcohol:</label>
-        <input type="range" min="0" max="3" step="1" value="0" id="afterLunch">
-        <p>Value: <span id="afterLunchValue">0</span></p>
-
-        <label>In a car, while stopped for a few minutes in traffic:</label>
-        <input type="range" min="0" max="3" step="1" value="0" id="inTraffic">
-        <p>Value: <span id="inTrafficValue">0</span></p>
-
-        <script>
-        document.querySelectorAll('input[type="range"]').forEach(slider => {
-            slider.addEventListener('input', (e) => {
-                const valueDisplay = document.getElementById(e.target.id + 'Value');
-                valueDisplay.textContent = e.target.value;
-            });
-        });
-        </script>
+        <div class="question-row">
+            <label>Sitting and reading:</label>
+            <select id="reading">
+                <option value="0">Would never doze</option>
+                <option value="1">Slight chance of dozing</option>
+                <option value="2">Moderate chance of dozing</option>
+                <option value="3">High chance of dozing</option>
+            </select>
+        </div>
+        <div class="question-row">
+            <label>Watching TV:</label>
+            <select id="watchingTV">
+                <option value="0">Would never doze</option>
+                <option value="1">Slight chance of dozing</option>
+                <option value="2">Moderate chance of dozing</option>
+                <option value="3">High chance of dozing</option>
+            </select>
+        </div>
+        <div class="question-row">
+            <label>Sitting inactive in a public place (e.g., a theatre or a meeting):</label>
+            <select id="publicPlace">
+                <option value="0">Would never doze</option>
+                <option value="1">Slight chance of dozing</option>
+                <option value="2">Moderate chance of dozing</option>
+                <option value="3">High chance of dozing</option>
+            </select>
+        </div>
+        <div class="question-row">
+            <label>As a passenger in a car for an hour without a break:</label>
+            <select id="passenger">
+                <option value="0">Would never doze</option>
+                <option value="1">Slight chance of dozing</option>
+                <option value="2">Moderate chance of dozing</option>
+                <option value="3">High chance of dozing</option>
+            </select>
+        </div>
+        <div class="question-row">
+            <label>Lying down to rest in the afternoon when circumstances permit:</label>
+            <select id="lyingDown">
+                <option value="0">Would never doze</option>
+                <option value="1">Slight chance of dozing</option>
+                <option value="2">Moderate chance of dozing</option>
+                <option value="3">High chance of dozing</option>
+            </select>
+        </div>
+        <div class="question-row">
+            <label>Sitting and talking to someone:</label>
+            <select id="talking">
+                <option value="0">Would never doze</option>
+                <option value="1">Slight chance of dozing</option>
+                <option value="2">Moderate chance of dozing</option>
+                <option value="3">High chance of dozing</option>
+            </select>
+        </div>
+        <div class="question-row">
+            <label>Sitting quietly after a lunch without alcohol:</label>
+            <select id="afterLunch">
+                <option value="0">Would never doze</option>
+                <option value="1">Slight chance of dozing</option>
+                <option value="2">Moderate chance of dozing</option>
+                <option value="3">High chance of dozing</option>
+            </select>
+        </div>
+        <div class="question-row">
+            <label>In a car, while stopped for a few minutes in traffic:</label>
+            <select id="inTraffic">
+                <option value="0">Would never doze</option>
+                <option value="1">Slight chance of dozing</option>
+                <option value="2">Moderate chance of dozing</option>
+                <option value="3">High chance of dozing</option>
+            </select>
+        </div>
     `;
 }
 
@@ -65,5 +96,16 @@ function calculateEpworth() {
         detailedText += `<strong>${id.replace(/([A-Z])/g, ' $1')}:</strong> ${value}<br>`;
     });
 
-    showResult(`Epworth Sleepiness Scale: ${totalScore}`, detailedText);
+    let interpretationText = '';
+    if (totalScore <= 10) {
+        interpretationText = "Normal sleepiness.";
+    } else if (totalScore <= 12) {
+        interpretationText = "Mild sleepiness.";
+    } else if (totalScore <= 15) {
+        interpretationText = "Moderate sleepiness.";
+    } else {
+        interpretationText = "Severe sleepiness.";
+    }
+
+    showResult(`Epworth Sleepiness Scale: ${totalScore}`, interpretationText, detailedText);
 }
