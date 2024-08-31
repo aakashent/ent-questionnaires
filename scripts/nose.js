@@ -9,23 +9,46 @@ function getNoseForm() {
 function generateNoseQuestions() {
     return `
         <label>Nasal congestion or stuffiness:</label>
-        <input type="number" min="0" max="10" id="nasalCongestion" value="0"> Severity (0-10)<br>
+        <input type="range" min="0" max="10" step="1" value="0" id="nasalCongestion">
+        <p>Value: <span id="nasalCongestionValue">0</span></p>
+
         <label>Nasal obstruction or blockage:</label>
-        <input type="number" min="0" max="10" id="nasalObstruction" value="0"> Severity (0-10)<br>
+        <input type="range" min="0" max="10" step="1" value="0" id="nasalObstruction">
+        <p>Value: <span id="nasalObstructionValue">0</span></p>
+
         <label>Trouble breathing through the nose:</label>
-        <input type="number" min="0" max="10" id="breathingTrouble" value="0"> Severity (0-10)<br>
+        <input type="range" min="0" max="10" step="1" value="0" id="breathingTrouble">
+        <p>Value: <span id="breathingTroubleValue">0</span></p>
+
         <label>Trouble sleeping:</label>
-        <input type="number" min="0" max="10" id="sleepingTrouble" value="0"> Severity (0-10)<br>
+        <input type="range" min="0" max="10" step="1" value="0" id="sleepingTrouble">
+        <p>Value: <span id="sleepingTroubleValue">0</span></p>
+
         <label>Unable to get enough air through the nose during exercise or exertion:</label>
-        <input type="number" min="0" max="10" id="exerciseTrouble" value="0"> Severity (0-10)<br>
+        <input type="range" min="0" max="10" step="1" value="0" id="exerciseTrouble">
+        <p>Value: <span id="exerciseTroubleValue">0</span></p>
+
+        <script>
+        document.querySelectorAll('input[type="range"]').forEach(slider => {
+            slider.addEventListener('input', (e) => {
+                const valueDisplay = document.getElementById(e.target.id + 'Value');
+                valueDisplay.textContent = e.target.value;
+            });
+        });
+        </script>
     `;
 }
 
 function calculateNose() {
     let totalScore = 0;
     const formElements = ["nasalCongestion", "nasalObstruction", "breathingTrouble", "sleepingTrouble", "exerciseTrouble"];
+    let detailedText = "";
+
     formElements.forEach(id => {
-        totalScore += parseInt(document.getElementById(id).value);
+        const value = parseInt(document.getElementById(id).value);
+        totalScore += value;
+        detailedText += `<strong>${id.replace(/([A-Z])/g, ' $1')}:</strong> ${value}<br>`;
     });
-    showResult(`Nasal Obstruction Symptom Evaluation Score: ${totalScore}`);
+
+    showResult(`Nasal Obstruction Symptom Evaluation Score: ${totalScore}`, detailedText);
 }
