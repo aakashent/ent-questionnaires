@@ -1,18 +1,8 @@
 function getEpworthForm() {
     return `
-        <h3>Epworth Sleepiness Scale</h3>
-        <form id="epworthForm">
-            ${generateEpworthQuestions()}
-            <button type="button" onclick="calculateEpworth()">Calculate Score</button>
-        </form>
-    `;
-}
-
-function generateEpworthQuestions() {
-    return `
         <div class="question-row">
             <label>Sitting and reading:</label>
-            <select id="reading">
+            <select id="reading" onchange="calculateEpworth()">
                 <option value="0">Would never doze</option>
                 <option value="1">Slight chance of dozing</option>
                 <option value="2">Moderate chance of dozing</option>
@@ -21,7 +11,7 @@ function generateEpworthQuestions() {
         </div>
         <div class="question-row">
             <label>Watching TV:</label>
-            <select id="watchingTV">
+            <select id="watchingTV" onchange="calculateEpworth()">
                 <option value="0">Would never doze</option>
                 <option value="1">Slight chance of dozing</option>
                 <option value="2">Moderate chance of dozing</option>
@@ -30,7 +20,7 @@ function generateEpworthQuestions() {
         </div>
         <div class="question-row">
             <label>Sitting inactive in a public place (e.g., a theatre or a meeting):</label>
-            <select id="publicPlace">
+            <select id="publicPlace" onchange="calculateEpworth()">
                 <option value="0">Would never doze</option>
                 <option value="1">Slight chance of dozing</option>
                 <option value="2">Moderate chance of dozing</option>
@@ -39,7 +29,7 @@ function generateEpworthQuestions() {
         </div>
         <div class="question-row">
             <label>As a passenger in a car for an hour without a break:</label>
-            <select id="passenger">
+            <select id="passenger" onchange="calculateEpworth()">
                 <option value="0">Would never doze</option>
                 <option value="1">Slight chance of dozing</option>
                 <option value="2">Moderate chance of dozing</option>
@@ -48,7 +38,7 @@ function generateEpworthQuestions() {
         </div>
         <div class="question-row">
             <label>Lying down to rest in the afternoon when circumstances permit:</label>
-            <select id="lyingDown">
+            <select id="lyingDown" onchange="calculateEpworth()">
                 <option value="0">Would never doze</option>
                 <option value="1">Slight chance of dozing</option>
                 <option value="2">Moderate chance of dozing</option>
@@ -57,7 +47,7 @@ function generateEpworthQuestions() {
         </div>
         <div class="question-row">
             <label>Sitting and talking to someone:</label>
-            <select id="talking">
+            <select id="talking" onchange="calculateEpworth()">
                 <option value="0">Would never doze</option>
                 <option value="1">Slight chance of dozing</option>
                 <option value="2">Moderate chance of dozing</option>
@@ -66,7 +56,7 @@ function generateEpworthQuestions() {
         </div>
         <div class="question-row">
             <label>Sitting quietly after a lunch without alcohol:</label>
-            <select id="afterLunch">
+            <select id="afterLunch" onchange="calculateEpworth()">
                 <option value="0">Would never doze</option>
                 <option value="1">Slight chance of dozing</option>
                 <option value="2">Moderate chance of dozing</option>
@@ -75,7 +65,7 @@ function generateEpworthQuestions() {
         </div>
         <div class="question-row">
             <label>In a car, while stopped for a few minutes in traffic:</label>
-            <select id="inTraffic">
+            <select id="inTraffic" onchange="calculateEpworth()">
                 <option value="0">Would never doze</option>
                 <option value="1">Slight chance of dozing</option>
                 <option value="2">Moderate chance of dozing</option>
@@ -93,7 +83,7 @@ function calculateEpworth() {
     formElements.forEach(id => {
         const value = parseInt(document.getElementById(id).value);
         totalScore += value;
-        detailedText += `<strong>${id.replace(/([A-Z])/g, ' $1')}:</strong> ${value}<br>`;
+        detailedText += `${id.replace(/([A-Z])/g, ' $1')}: ${value}\n`;
     });
 
     let interpretationText = '';
