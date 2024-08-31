@@ -21,7 +21,7 @@ body {
 
 /* Left side: Scores and Questions */
 .left-panel {
-    width: 65%; /* Make the left panel wider to accommodate more space */
+    width: 65%;
 }
 
 .header {
@@ -58,52 +58,49 @@ body {
     color: white;
 }
 
-/* Middle: Questions and Answers */
-.questionnaire {
-    display: flex;
-    flex-direction: column;
+/* Non-slider questions */
+.question-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
     margin-bottom: 20px;
 }
 
-.question-row {
-    display: flex;
+/* Slider questions */
+.slider-question-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
     align-items: center;
     margin-bottom: 20px;
 }
 
 .question-text {
-    flex: 2; /* Increased width to maintain label and input spacing */
     padding: 10px;
     background-color: #00796b;
     color: white;
     border-radius: 10px;
-    margin-right: 10px;
     display: flex;
     align-items: center;
+}
+
+.scale-text {
+    text-align: center;
+    color: #fff;
 }
 
 .answer-input {
-    flex: 1;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
 }
 
-/* Ensure all inputs have similar height for alignment */
-.answer-input select, 
-.answer-input input[type="checkbox"], 
+.answer-input select,
+.answer-input input[type="checkbox"],
 .answer-input input[type="range"] {
-    width: auto;
-    padding: 10px;
+    width: 100%;
+    padding: 5px;
     border-radius: 5px;
     border: 1px solid #ccc;
     background-color: white;
-    margin-left: 10px;
-}
-
-.answer-input input[type="checkbox"] {
-    width: auto; /* Ensure checkbox doesn't stretch */
-    height: auto; /* Allow height to adjust for alignment */
 }
 
 /* Right side: Results */
@@ -114,6 +111,7 @@ body {
     border-radius: 10px;
     border: 1px solid #dee2e6;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    display: none;
 }
 
 #scoreResult {
