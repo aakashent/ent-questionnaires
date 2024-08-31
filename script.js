@@ -7,9 +7,11 @@ function loadScoreForm() {
 
     // Clear previous form and results
     scoreFormContainer.innerHTML = "";
-    resultContainer.style.display = "none";
     document.getElementById("scoreResult").textContent = "";
     document.getElementById("interpretation").textContent = "";
+
+    // Display the result container initially hidden
+    resultContainer.style.display = "block";
 
     switch (scoreType) {
         case "epworth":
@@ -33,11 +35,9 @@ function loadScoreForm() {
             }, 0);
             break;
         default:
+            resultContainer.style.display = "none"; // Hide result if no form selected
             break;
     }
-
-    // Show result box
-    resultContainer.style.display = "block";
 }
 
 function showResult(resultText, interpretationText, detailedText) {
