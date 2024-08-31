@@ -15,26 +15,29 @@ function loadScoreForm() {
         case "epworth":
             scoreFormContainer.innerHTML = getEpworthForm();
             calculateEpworth(); // Initialize calculation
-            resultContainer.style.display = "block";
             break;
         case "stopbang":
             scoreFormContainer.innerHTML = getStopBangForm();
             calculateStopBang(); // Initialize calculation
-            resultContainer.style.display = "block";
             break;
         case "nose":
             scoreFormContainer.innerHTML = getNoseForm();
-            calculateNose(); // Initialize calculation
-            resultContainer.style.display = "block";
+            setTimeout(() => {
+                calculateNose(); // Initialize calculation after the DOM is ready
+            }, 0);
             break;
         case "edtq7":
             scoreFormContainer.innerHTML = getEdtq7Form();
-            calculateEdtq7(); // Initialize calculation
-            resultContainer.style.display = "block";
+            setTimeout(() => {
+                calculateEdtq7(); // Initialize calculation after the DOM is ready
+            }, 0);
             break;
         default:
             break;
     }
+
+    // Show result box
+    resultContainer.style.display = "block";
 }
 
 function showResult(resultText, interpretationText, detailedText) {
