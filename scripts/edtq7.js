@@ -57,7 +57,8 @@ function calculateEdtq7() {
         if (slider) {
             const value = parseInt(slider.value);
             totalScore += value;
-            detailedText += `${slider.closest('.slider-question-row').querySelector('.question-text').textContent.trim()} ${value}\n`;
+            const questionText = slider.closest('.slider-question-row').querySelector('.question-text').textContent.trim();
+            detailedText += `${questionText} ${value}\n`;
         }
     });
 
