@@ -41,7 +41,10 @@ function generateEdtq7Questions() {
 }
 
 function updateEdtq7Value(id) {
-    document.getElementById(`${id}Value`).textContent = document.getElementById(id).value;
+    const valueElement = document.getElementById(id + 'Value');
+    if (valueElement) {
+        valueElement.textContent = document.getElementById(id).value;
+    }
 }
 
 function calculateEdtq7() {
@@ -51,9 +54,11 @@ function calculateEdtq7() {
 
     formElements.forEach(id => {
         const slider = document.getElementById(id);
-        const value = parseInt(slider.value);
-        totalScore += value;
-        detailedText += `${slider.previousElementSibling.textContent.trim()} ${value}\n`;
+        if (slider) {
+            const value = parseInt(slider.value);
+            totalScore += value;
+            detailedText += `${slider.closest('.slider-question-row').querySelector('.question-text').textContent.trim()} ${value}\n`;
+        }
     });
 
     const averageScore = totalScore / formElements.length;
