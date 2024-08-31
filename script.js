@@ -1,145 +1,57 @@
-/* General styling */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f9f9f9;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
+// script.js
+
+function loadScoreForm() {
+    const scoreType = document.getElementById("scoreType").value;
+    const scoreFormContainer = document.getElementById("scoreForm");
+    const resultContainer = document.getElementById("result");
+
+    // Clear previous form and results
+    scoreFormContainer.innerHTML = "";
+    resultContainer.style.display = "none";
+    document.getElementById("scoreResult").textContent = "";
+    document.getElementById("interpretation").textContent = "";
+
+    switch (scoreType) {
+        case "epworth":
+            scoreFormContainer.innerHTML = getEpworthForm();
+            calculateEpworth(); // Initialize calculation
+            break;
+        case "stopbang":
+            scoreFormContainer.innerHTML = getStopBangForm();
+            calculateStopBang(); // Initialize calculation
+            break;
+        case "nose":
+            scoreFormContainer.innerHTML = getNoseForm();
+            setTimeout(() => {
+                calculateNose(); // Initialize calculation after the DOM is ready
+            }, 0);
+            break;
+        case "edtq7":
+            scoreFormContainer.innerHTML = getEdtq7Form();
+            setTimeout(() => {
+                calculateEdtq7(); // Initialize calculation after the DOM is ready
+            }, 0);
+            break;
+        default:
+            break;
+    }
+
+    // Show result box
+    resultContainer.style.display = "block";
 }
 
-.container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+function showResult(resultText, interpretationText, detailedText) {
+    document.getElementById("scoreResult").textContent = resultText;
+    document.getElementById("interpretation").textContent = interpretationText;
+    document.getElementById("detailedResult").value = detailedText; // Hidden input for copying
 }
 
-/* Left side: Scores and Questions */
-.left-panel {
-    width: 65%; /* Make the left panel wider to accommodate more space */
-}
+function copyToClipboard(resultOnly = true) {
+    const resultText = document.getElementById("scoreResult").textContent;
+    const detailedText = document.getElementById("detailedResult").value;
+    const textToCopy = resultOnly ? resultText : `${detailedText}\n${resultText}`;
 
-.header {
-    margin-bottom: 20px;
-}
-
-.header label {
-    font-weight: bold;
-}
-
-#scoreType {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background-color: #ffffff;
-    font-size: 16px;
-    color: #333;
-    margin-top: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23333" d="M2 0L0 2h4z"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 8px 10px;
-}
-
-.questionnaire-list {
-    background-color: #00796b; /* Dark teal background */
-    padding: 20px;
-    border-radius: 10px;
-    color: white;
-}
-
-/* Middle: Questions and Answers */
-.questionnaire {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-}
-
-.question-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.question-text {
-    flex: 3; /* Ensure the question text takes up enough space */
-    padding: 10px;
-    background-color: #00796b;
-    color: white;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* Align text to the left */
-}
-
-.answer-input {
-    flex: 2; /* Ensure the answer input takes up enough space */
-    display: flex;
-    align-items: center;
-}
-
-.answer-input select,
-.answer-input input[type="checkbox"],
-.answer-input input[type="range"] {
-    width: 100%;
-    padding: 5px;
-    margin-left: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background-color: white;
-}
-
-/* Right side: Results */
-.results-panel {
-    width: 30%;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    border: 1px solid #dee2e6;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-    display: none; /* Hide initially */
-}
-
-#scoreResult {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 15px;
-    font-weight: bold;
-}
-
-#interpretation {
-    font-size: 18px;
-    color: #007bff;
-    margin-bottom: 20px;
-}
-
-#copyButtons {
-    display: flex;
-    justify-content: space-around;
-}
-
-#copyButtons button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 45%;
-}
-
-#copyButtons button:hover {
-    background-color: #0056b3;
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        alert("Copied to clipboard!");
+    });
 }
