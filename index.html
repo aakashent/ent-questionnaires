@@ -8,35 +8,32 @@
 </head>
 <body>
     <div class="container">
-        <!-- Dropdown to select the questionnaire -->
-        <div class="header">
-            <h1>Medical Scoring Tool</h1>
-            <label for="scoreType">Select Score:</label>
-            <select id="scoreType" onchange="loadScoreForm()">
-                <option value="">--Select--</option>
-                <option value="epworth">Epworth Sleepiness Scale</option>
-                <option value="stopbang">STOP-Bang Questionnaire</option>
-                <option value="nose">Nasal Obstruction Symptom Evaluation</option>
-                <option value="edtq7">EDTQ-7 Questionnaire</option>
-            </select>
-        </div>
-
-        <!-- Main content area with questions on the left and result on the right -->
-        <div class="content">
-            <div class="questions-frame">
-                <div id="scoreForm"></div>
+        <!-- Left Panel: Score Selection and Questions -->
+        <div class="left-panel">
+            <div class="header">
+                <h1>Medical Scoring Tool</h1>
+                <label for="scoreType">Select Score:</label>
+                <select id="scoreType" onchange="loadScoreForm()">
+                    <option value="">--Select--</option>
+                    <option value="epworth">Epworth Sleepiness Scale</option>
+                    <option value="stopbang">STOP-Bang Questionnaire</option>
+                    <option value="nose">Nasal Obstruction Symptom Evaluation</option>
+                    <option value="edtq7">EDTQ-7 Questionnaire</option>
+                </select>
             </div>
 
-            <div class="answers-frame">
-                <div id="result">
-                    <h2>Result</h2>
-                    <p id="scoreResult"></p>
-                    <p id="interpretation"></p>
-                    <div id="copyButtons">
-                        <button onclick="copyToClipboard(true)">Copy Result Only</button>
-                        <button onclick="copyToClipboard(false)">Copy Detailed Report</button>
-                    </div>
-                </div>
+            <!-- Questions will load here -->
+            <div class="questionnaire-list" id="scoreForm"></div>
+        </div>
+
+        <!-- Right Panel: Results and Explanation -->
+        <div class="results-panel" id="result">
+            <h2>Result</h2>
+            <p id="scoreResult"></p>
+            <p id="interpretation"></p>
+            <div id="copyButtons">
+                <button onclick="copyToClipboard(true)">Copy Result Only</button>
+                <button onclick="copyToClipboard(false)">Copy Detailed Report</button>
             </div>
         </div>
     </div>
