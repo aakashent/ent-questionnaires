@@ -22,26 +22,43 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* Labels and inputs styling */
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #555;
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
 }
 
-select, input[type="number"], input[type="checkbox"] {
-    width: 100%;
-    padding: 10px;
+.question-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #6c757d;
+    color: white;
+}
+
+.question-row label {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.question-row input[type="range"],
+.question-row input[type="checkbox"] {
+    flex: 1;
+    background-color: white;
+    padding: 5px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
 
-/* Slider input */
-input[type="range"] {
-    width: 100%;
-    margin-bottom: 20px;
+.question-row p {
+    margin: 0;
+    padding-left: 10px;
+    color: #333;
+    background-color: white;
+    border-radius: 5px;
 }
 
 /* Buttons */
@@ -81,6 +98,12 @@ button:disabled {
     margin-bottom: 15px;
 }
 
+#interpretation {
+    font-size: 16px;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
 #copyButtons {
     display: flex;
     justify-content: flex-end;
@@ -94,4 +117,3 @@ button:disabled {
 #copyButtons button:hover {
     background-color: #0056b3;
 }
-
