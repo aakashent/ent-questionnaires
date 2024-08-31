@@ -1,76 +1,44 @@
+// script.js
+
 function loadScoreForm() {
     const scoreType = document.getElementById("scoreType").value;
-    const scoreForm = document.getElementById("scoreForm");
-    scoreForm.innerHTML = ""; // Clear previous form
-
-    const resultDiv = document.getElementById("result");
-    resultDiv.style.display = "none"; // Hide previous result when switching forms
+    const scoreFormContainer = document.getElementById("scoreForm");
+    scoreFormContainer.innerHTML = ""; // Clear previous form
 
     switch (scoreType) {
         case "epworth":
-            scoreForm.innerHTML = getEpworthForm();
+            scoreFormContainer.innerHTML = getEpworthForm();
+            calculateEpworth(); // Initialize calculation
             break;
         case "stopbang":
-            scoreForm.innerHTML = getStopBangForm();
+            scoreFormContainer.innerHTML = getStopBangForm();
+            calculateStopBang(); // Initialize calculation
             break;
         case "nose":
-            scoreForm.innerHTML = getNoseForm();
+            scoreFormContainer.innerHTML = getNoseForm();
+            calculateNose(); // Initialize calculation
             break;
         case "edtq7":
-            scoreForm.innerHTML = getEdtq7Form();
+            scoreFormContainer.innerHTML = getEdtq7Form();
+            calculateEdtq7(); // Initialize calculation
+            break;
+        default:
             break;
     }
 }
 
 function showResult(resultText, interpretationText, detailedText) {
-    const resultDiv = document.getElementById("result");
-    resultDiv.innerHTML = ''; // Clear previous result content
-
-    const scoreResult = document.createElement('p');
-    scoreResult.id = 'scoreResult';
-    scoreResult.textContent = resultText;
-
-    const interpretation = document.createElement('p');
-    interpretation.id = 'interpretation';
-    interpretation.textContent = interpretationText;
-
-    const detailedResult = document.createElement('div');
-    detailedResult.id = 'detailedResult';
-    detailedResult.innerHTML = detailedText;
-
-    resultDiv.appendChild(scoreResult);
-    resultDiv.appendChild(interpretation);
-    resultDiv.appendChild(detailedResult);
-    resultDiv.appendChild(createCopyButtons());
-
-    resultDiv.style.display = "block";
-}
-
-function createCopyButtons() {
-    const copyButtonsDiv = document.createElement('div');
-    copyButtonsDiv.id = 'copyButtons';
-
-    const copyResultButton = document.createElement('button');
-    copyResultButton.textContent = "Copy Result Only";
-    copyResultButton.onclick = () => copyToClipboard(true);
-
-    const copyDetailedButton = document.createElement('button');
-    copyDetailedButton.textContent = "Copy Detailed Report";
-    copyDetailedButton.onclick = () => copyToClipboard(false);
-
-    copyButtonsDiv.appendChild(copyResultButton);
-    copyButtonsDiv.appendChild(copyDetailedButton);
-
-    return copyButtonsDiv;
+    document.getElementById("scoreResult").textContent = resultText;
+    document.getElementById("interpretation").textContent = interpretationText;
+    document.getElementById("detailedResult").value = detailedText; // Hidden input for copying
 }
 
 function copyToClipboard(resultOnly = true) {
-    const scoreResult = document.getElementById("scoreResult").textContent;
-    const detailedResult = document.getElementById("detailedResult").innerHTML.replace(/<br>/g, '\n');
+    const resultText = document.getElementById("scoreResult").textContent;
+    const detailedText = document.getElementById("detailedResult").value;
+    const textToCopy = resultOnly ? resultText : `${detailedText}\n${resultText}`;
 
-    const textToCopy = resultOnly ? scoreResult : `${detailedResult}\n\n${scoreResult}`;
-    
     navigator.clipboard.writeText(textToCopy).then(() => {
-        alert("Result copied to clipboard!");
+        alert("Copied to clipboard!");
     });
 }
