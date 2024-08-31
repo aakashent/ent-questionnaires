@@ -11,13 +11,13 @@ function getEdtq7Form() {
 
 function generateEdtq7Questions() {
     const questions = [
-        { id: 'fullness', text: 'A feeling that your ear is clogged or "under water":' },
-        { id: 'discomfort', text: 'Ear pain or discomfort:' },
-        { id: 'popping', text: 'A feeling of popping or clicking in the ear:' },
-        { id: 'pressure', text: 'A feeling of pressure in the ear:' },
-        { id: 'muffled', text: 'Muffled hearing:' },
-        { id: 'sounds', text: 'Ringing, buzzing, or other sounds in the ear:' },
-        { id: 'balance', text: 'A feeling of dizziness or imbalance:' },
+        { id: 'fullness', text: 'A feeling that your ear is clogged or "under water":', range: "1 (No problem) - 7 (Severe problem)" },
+        { id: 'discomfort', text: 'Ear pain or discomfort:', range: "1 (No problem) - 7 (Severe problem)" },
+        { id: 'popping', text: 'A feeling of popping or clicking in the ear:', range: "1 (No problem) - 7 (Severe problem)" },
+        { id: 'pressure', text: 'A feeling of pressure in the ear:', range: "1 (No problem) - 7 (Severe problem)" },
+        { id: 'muffled', text: 'Muffled hearing:', range: "1 (No problem) - 7 (Severe problem)" },
+        { id: 'sounds', text: 'Ringing, buzzing, or other sounds in the ear:', range: "1 (No problem) - 7 (Severe problem)" },
+        { id: 'balance', text: 'A feeling of dizziness or imbalance:', range: "1 (No problem) - 7 (Severe problem)" },
     ];
 
     let html = '';
@@ -26,10 +26,11 @@ function generateEdtq7Questions() {
             <div class="question-row">
                 <div class="question-text">
                     ${q.text}
+                    <br><small>${q.range}</small>
                 </div>
                 <div class="answer-input">
-                    <input type="range" id="${q.id}" min="0" max="7" step="1" value="0" oninput="updateEdtq7Value('${q.id}'); calculateEdtq7();">
-                    <span id="${q.id}Value">0</span>
+                    <input type="range" id="${q.id}" min="1" max="7" step="1" value="1" oninput="updateEdtq7Value('${q.id}'); calculateEdtq7();">
+                    <span id="${q.id}Value">1</span>
                 </div>
             </div>
         `;
