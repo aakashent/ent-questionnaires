@@ -28,7 +28,7 @@ function generateEdtq7Questions() {
                     ${q.text}
                 </div>
                 <div class="answer-input">
-                    <input type="range" id="${q.id}" min="0" max="4" step="1" value="0" oninput="updateEdtq7Value('${q.id}'); calculateEdtq7();">
+                    <input type="range" id="${q.id}" min="0" max="7" step="1" value="0" oninput="updateEdtq7Value('${q.id}'); calculateEdtq7();">
                     <span id="${q.id}Value">0</span>
                 </div>
             </div>
