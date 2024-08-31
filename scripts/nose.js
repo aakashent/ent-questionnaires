@@ -11,11 +11,11 @@ function getNoseForm() {
 
 function generateNoseQuestions() {
     const questions = [
-        { id: 'nasalCongestion', text: 'Nasal congestion or stuffiness:' },
-        { id: 'nasalObstruction', text: 'Nasal blockage or obstruction:' },
-        { id: 'troubleBreathing', text: 'Trouble breathing through your nose:' },
-        { id: 'troubleSleeping', text: 'Trouble sleeping:' },
-        { id: 'unableToGetAir', text: 'Unable to get enough air through your nose during exercise or exertion:' },
+        { id: 'nasalCongestion', text: 'Nasal congestion or stuffiness:', range: "0 (None) - 4 (Severe)" },
+        { id: 'nasalObstruction', text: 'Nasal blockage or obstruction:', range: "0 (None) - 4 (Severe)" },
+        { id: 'troubleBreathing', text: 'Trouble breathing through your nose:', range: "0 (None) - 4 (Severe)" },
+        { id: 'troubleSleeping', text: 'Trouble sleeping:', range: "0 (None) - 4 (Severe)" },
+        { id: 'unableToGetAir', text: 'Unable to get enough air through your nose during exercise or exertion:', range: "0 (None) - 4 (Severe)" },
     ];
 
     let html = '';
@@ -24,6 +24,7 @@ function generateNoseQuestions() {
             <div class="question-row">
                 <div class="question-text">
                     ${q.text}
+                    <br><small>${q.range}</small>
                 </div>
                 <div class="answer-input">
                     <input type="range" id="${q.id}" min="0" max="4" step="1" value="0" oninput="updateNoseValue('${q.id}'); calculateNose();">
