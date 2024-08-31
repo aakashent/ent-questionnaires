@@ -23,10 +23,12 @@ function generateEdtq7Questions() {
     let html = '';
     questions.forEach(q => {
         html += `
-            <div class="question-row">
+            <div class="slider-question-row">
                 <div class="question-text">
                     ${q.text}
-                    <br><small>${q.range}</small>
+                </div>
+                <div class="scale-text">
+                    ${q.range}
                 </div>
                 <div class="answer-input">
                     <input type="range" id="${q.id}" min="1" max="7" step="1" value="1" oninput="updateEdtq7Value('${q.id}'); calculateEdtq7();">
