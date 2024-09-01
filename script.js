@@ -73,7 +73,7 @@ document.addEventListener('scroll', function () {
         const viewportHeight = window.innerHeight;
 
         // Adjust the +20 value to slightly delay the results panel expansion after the last question
-        if (lastQuestionBottom <= viewportHeight + 20) {
+        if (lastQuestionBottom <= viewportHeight + 40) {
             resultsPanel.classList.add('expanded');
         } else {
             resultsPanel.classList.remove('expanded');
