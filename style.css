@@ -6,7 +6,7 @@ body {
     padding: 20px;
     display: flex;
     justify-content: center;
-    flex-direction: column; /* Default to column layout */
+    flex-direction: column;
 }
 
 .container {
@@ -18,7 +18,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    flex-direction: row; /* Default to row layout */
+    flex-direction: row;
 }
 
 .left-panel {
@@ -64,7 +64,7 @@ body {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-    padding: 0 5px; /* Adjust padding to align with the slider edges */
+    padding: 0 5px;
 }
 
 .scale-text-left,
@@ -125,12 +125,16 @@ body {
     padding: 10px;
     margin: 0 5px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: none;
     background-color: #007bff;
     color: white;
     cursor: pointer;
     flex: 1;
     text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .answer-input button.selected {
@@ -138,21 +142,69 @@ body {
     color: white;
 }
 
-/* Results Panel for Desktop */
+.answer-input button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Results Panel */
 .results-panel {
     width: 30%;
     padding: 20px;
-    background-color: #f8f9fa;
+    background-color: #ffffff;
     border-radius: 10px;
-    border: 1px solid #dee2e6;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    border: 2px solid #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
     display: none;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* Styling for the score */
+#scoreResult {
+    font-size: 40px;
+    color: #007bff;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+    line-height: 1.2;
+}
+
+#interpretation {
+    font-size: 18px;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* Styling for copy buttons */
+#copyButtons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+#copyButtons button {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 45%;
+    box-shadow: 0 4px 6px rgba(40, 167, 69, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#copyButtons button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
 }
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
     .container {
-        flex-direction: column; /* Stack elements vertically on mobile */
+        flex-direction: column;
         padding: 10px;
     }
 
@@ -167,54 +219,36 @@ body {
         left: 0;
         right: 0;
         padding: 15px 10px;
-        background-color: #f8f9fa;
+        background-color: #ffffff;
         border-radius: 10px 10px 0 0;
-        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
-        display: block; /* Ensure it shows on mobile */
+        box-shadow: 0 -4px 10px rgba(0, 123, 255, 0.3);
+        display: block;
         z-index: 1000;
-        transform: translateY(calc(100% - 60px)); /* Initially show a small part */
+        transform: translateY(calc(100% - 60px));
         transition: transform 0.3s ease;
+        text-align: center;
     }
 
     .results-panel.expanded {
-        transform: translateY(0); /* Fully expand when scrolled */
+        transform: translateY(0);
     }
 
     .questionnaire-list {
-        margin-bottom: 60px; /* Space for the fixed results panel */
+        margin-bottom: 60px;
     }
-}
 
-/* Desktop result box styles */
-#scoreResult {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 15px;
-    font-weight: bold;
-}
+    #scoreResult {
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
 
-#interpretation {
-    font-size: 18px;
-    color: #007bff;
-    margin-bottom: 20px;
-}
+    #copyButtons {
+        margin-top: 15px;
+    }
 
-#copyButtons {
-    display: flex;
-    justify-content: space-around;
-}
-
-#copyButtons button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 45%;
-}
-
-#copyButtons button:hover {
-    background-color: #0056b3;
+    #copyButtons button {
+        padding: 10px 15px;
+        font-size: 14px;
+        width: 48%;
+    }
 }
