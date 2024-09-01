@@ -63,32 +63,24 @@ function copyToClipboard(resultOnly = true) {
 document.addEventListener('DOMContentLoaded', function () {
     const resultsPanel = document.querySelector('.results-panel');
 
-    // Function to manage the sticky behavior on desktop
-    function handleDesktopSticky() {
-        if (window.innerWidth > 768) { // Only apply on desktop
-            const leftPanel = document.querySelector('.left-panel');
-            const leftPanelBottom = leftPanel.getBoundingClientRect().bottom;
-            const viewportHeight = window.innerHeight;
-
-            if (leftPanelBottom < viewportHeight) {
-                resultsPanel.style.position = 'absolute';
-                resultsPanel.style.top = `${leftPanelBottom - resultsPanel.offsetHeight}px`;
-            } else {
-                resultsPanel.style.position = '-webkit-sticky';
-                resultsPanel.style.position = 'sticky';
-                resultsPanel.style.top = '20px';
-            }
+    function handleStickyBehavior() {
+        if (window.innerWidth > 768) {
+            // Desktop: Keep results panel sticky and on the right
+            resultsPanel.style.position = 'sticky';
+            resultsPanel.style.top = '20px';
+            resultsPanel.style.bottom = ''; // Clear the bottom
+            resultsPanel.style.transform = '';
         } else {
+            // Mobile: Keep results panel fixed at the bottom
             resultsPanel.style.position = 'fixed';
-            resultsPanel.style.bottom = '0';
             resultsPanel.style.top = '';
+            resultsPanel.style.bottom = '0';
+            resultsPanel.style.transform = 'translateY(calc(100% - 40px))';
         }
     }
 
-    window.addEventListener('scroll', handleDesktopSticky);
-    window.addEventListener('resize', handleDesktopSticky);
-
-    handleDesktopSticky(); // Initial call to set up the sticky behavior
+    window.addEventListener('resize', handleStickyBehavior);
+    handleStickyBehavior(); // Call once to apply the correct behavior on load
 
     // Expand results panel on mobile when scrolled to the bottom of the questionnaire
     document.addEventListener('scroll', function () {
@@ -100,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const lastQuestionBottom = lastQuestion.getBoundingClientRect().bottom;
             const viewportHeight = window.innerHeight;
 
-            if (lastQuestionBottom <= viewportHeight + 40) {
+            if (lastQuestionBottom <= viewportHeight + 20) {
                 resultsPanel.classList.add('expanded');
             } else {
                 resultsPanel.classList.remove('expanded');
