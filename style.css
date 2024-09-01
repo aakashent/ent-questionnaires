@@ -119,6 +119,63 @@ body {
     background-color: white;
 }
 
+/* General Answer Input Button Styling */
+.answer-input button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 5px;
+}
+
+.answer-input button.selected {
+    background-color: #0056b3;
+    color: white;
+}
+
+.answer-input button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* STOP-Bang Yes/No Button Specific Styling */
+.stopbang-buttons {
+    display: flex;
+    gap: 10px; /* Space between Yes and No buttons */
+}
+
+.stopbang-buttons button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.stopbang-buttons button.selected {
+    background-color: #0056b3;
+    color: white;
+}
+
+.stopbang-buttons button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
 /* Results Panel for Desktop */
 .results-panel {
     width: 35%;
