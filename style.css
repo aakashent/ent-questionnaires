@@ -155,16 +155,20 @@ body {
     border-radius: 10px;
     border: 2px solid #007bff;
     box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
-    display: none;
-    text-align: center;
+    display: block; /* Ensure it's always visible */
+    text-align: left;
     transition: all 0.3s ease;
     max-height: 40px; /* Very compact initial size */
     overflow: hidden;
+    position: fixed;
+    top: 20px;
+    left: 20px;
 }
 
 .results-panel.expanded {
     max-height: 300px; /* Expands to show more content */
     padding: 20px;
+    width: 40%; /* Expands width when expanded */
 }
 
 /* Styling for the score */
@@ -245,7 +249,7 @@ body {
         z-index: 1000;
         transform: translateY(calc(100% - 40px));
         transition: transform 0.3s ease, max-height 0.3s ease;
-        text-align: center;
+        text-align: left;
         max-height: 40px; /* Very compact initial size on mobile */
         overflow: hidden;
     }
