@@ -1,7 +1,7 @@
 /* General styling */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f9f9f9;
+    background-color: #f9f9f9';
     margin: 0;
     padding: 20px;
     display: flex;
@@ -13,17 +13,17 @@ body {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    max-width: 1200px;  /* Reduced max-width for desktop */
+    max-width: 1200px;  /* Adjusted max-width for desktop */
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     padding: 20px;
     flex-direction: row;
-    gap: 20px;  /* Add space between the questionnaire and results box */
+    gap: 20px;  /* Space between questionnaire and results box */
 }
 
 .left-panel {
-    width: 60%;  /* Adjusted width to reduce overall width */
+    width: 60%;  /* Width for questionnaire panel */
 }
 
 .header {
@@ -124,13 +124,12 @@ body {
 
 /* Results Panel for Desktop */
 .results-panel {
-    width: 35%;  /* Reduced width for results box */
+    width: 35%;  /* Proper width for results box */
     padding: 20px;
     background-color: #f7f7f7;
     border-radius: 10px;
     border: 2px solid #007bff;
     box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
-    position: -webkit-sticky; /* Fix for some older browsers */
     position: sticky;
     top: 20px;
     text-align: left;
@@ -195,19 +194,18 @@ body {
     .results-panel {
         width: 100%;
         position: fixed;
-        bottom: 0; /* Ensure it sticks to the bottom */
+        bottom: 0; /* Stick the results box to the bottom on mobile */
         left: 0;
         right: 0;
         padding: 10px 20px;
         background-color: #ffffff;
         border-radius: 10px 10px 0 0;
         box-shadow: 0 -4px 10px rgba(0, 123, 255, 0.3);
-        display: block;
         z-index: 1000;
         transform: translateY(calc(100% - 40px));
         transition: transform 0.3s ease, max-height 0.3s ease;
         text-align: left;
-        max-height: 40px; /* Very compact initial size on mobile */
+        max-height: 40px; /* Compact size on mobile */
         overflow: hidden;
     }
 
