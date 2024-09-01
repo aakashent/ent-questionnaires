@@ -6,6 +6,7 @@ body {
     padding: 20px;
     display: flex;
     justify-content: center;
+    flex-direction: column; /* Default to column layout */
 }
 
 .container {
@@ -17,9 +18,9 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    flex-direction: row; /* Default to row layout */
 }
 
-/* Left side: Scores and Questions */
 .left-panel {
     width: 65%;
 }
@@ -52,7 +53,7 @@ body {
 }
 
 .questionnaire-list {
-    background-color: #00796b; /* Dark teal background */
+    background-color: #00796b;
     padding: 20px;
     border-radius: 10px;
     color: white;
@@ -91,7 +92,7 @@ body {
 /* Slider questions */
 .slider-question-row {
     display: grid;
-    grid-template-columns: 3fr 2fr; /* Adjusted to give more space to the question */
+    grid-template-columns: 3fr 2fr;
     align-items: center;
     margin-bottom: 20px;
 }
@@ -137,7 +138,7 @@ body {
     color: white;
 }
 
-/* Right side: Results */
+/* Results Panel for Desktop */
 .results-panel {
     width: 30%;
     padding: 20px;
@@ -148,6 +149,43 @@ body {
     display: none;
 }
 
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack elements vertically on mobile */
+        padding: 10px;
+    }
+
+    .left-panel {
+        width: 100%;
+    }
+
+    .results-panel {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 15px 10px;
+        background-color: #f8f9fa;
+        border-radius: 10px 10px 0 0;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+        display: block; /* Ensure it shows on mobile */
+        z-index: 1000;
+        transform: translateY(calc(100% - 60px)); /* Initially show a small part */
+        transition: transform 0.3s ease;
+    }
+
+    .results-panel.expanded {
+        transform: translateY(0); /* Fully expand when scrolled */
+    }
+
+    .questionnaire-list {
+        margin-bottom: 60px; /* Space for the fixed results panel */
+    }
+}
+
+/* Desktop result box styles */
 #scoreResult {
     font-size: 24px;
     color: #333;
