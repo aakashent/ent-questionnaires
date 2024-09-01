@@ -150,7 +150,7 @@ body {
 /* Compact initial Results Panel */
 .results-panel {
     width: 30%;
-    padding: 10px;
+    padding: 5px 10px;
     background-color: #ffffff;
     border-radius: 10px;
     border: 2px solid #007bff;
@@ -158,7 +158,7 @@ body {
     display: none;
     text-align: center;
     transition: all 0.3s ease;
-    max-height: 80px; /* Initial compact size */
+    max-height: 40px; /* Very compact initial size */
     overflow: hidden;
 }
 
@@ -169,11 +169,12 @@ body {
 
 /* Styling for the score */
 #scoreResult {
-    font-size: 24px;
+    font-size: 18px;
     color: #007bff;
     font-weight: bold;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
     line-height: 1.2;
+    margin: 0;
 }
 
 /* Initially hidden content */
@@ -236,16 +237,16 @@ body {
         bottom: 0;
         left: 0;
         right: 0;
-        padding: 10px;
+        padding: 5px 10px;
         background-color: #ffffff;
         border-radius: 10px 10px 0 0;
         box-shadow: 0 -4px 10px rgba(0, 123, 255, 0.3);
         display: block;
         z-index: 1000;
-        transform: translateY(calc(100% - 60px));
+        transform: translateY(calc(100% - 40px));
         transition: transform 0.3s ease, max-height 0.3s ease;
         text-align: center;
-        max-height: 80px; /* Initial compact size on mobile */
+        max-height: 40px; /* Very compact initial size on mobile */
         overflow: hidden;
     }
 
@@ -260,7 +261,7 @@ body {
     }
 
     #scoreResult {
-        font-size: 20px;
+        font-size: 16px;
     }
 
     #copyButtons button {
