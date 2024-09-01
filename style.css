@@ -58,6 +58,28 @@ body {
     color: white;
 }
 
+/* Slider scale text above sliders */
+.slider-scale-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 0 5px; /* Adjust padding to align with the slider edges */
+}
+
+.scale-text-left,
+.scale-text-right {
+    color: white;
+    font-size: 14px;
+}
+
+.scale-text-left {
+    text-align: left;
+}
+
+.scale-text-right {
+    text-align: right;
+}
+
 /* Non-slider questions */
 .question-row {
     display: grid;
@@ -69,7 +91,7 @@ body {
 /* Slider questions */
 .slider-question-row {
     display: grid;
-    grid-template-columns: 3fr 1fr 2fr;
+    grid-template-columns: 3fr 2fr; /* Adjusted to give more space to the question */
     align-items: center;
     margin-bottom: 20px;
 }
@@ -81,12 +103,6 @@ body {
     border-radius: 10px;
     display: flex;
     align-items: center;
-}
-
-.scale-text {
-    text-align: center;
-    color: #fff;
-    font-size: 12px; /* Smaller text for the scale */
 }
 
 .answer-input {
