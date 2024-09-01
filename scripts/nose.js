@@ -39,7 +39,10 @@ function generateNoseQuestions() {
 }
 
 function updateNoseValue(id) {
-    document.getElementById(`${id}Value`).textContent = document.getElementById(id).value;
+    const valueElement = document.getElementById(id + 'Value');
+    if (valueElement) {
+        valueElement.textContent = document.getElementById(id).value;
+    }
 }
 
 function calculateNose() {
@@ -49,13 +52,16 @@ function calculateNose() {
 
     formElements.forEach(id => {
         const slider = document.getElementById(id);
-        const value = parseInt(slider.value);
-        totalScore += value;
-        detailedText += `${slider.previousElementSibling.textContent.trim()} ${value}\n`;
+        if (slider) {
+            const value = parseInt(slider.value);
+            totalScore += value;
+            const questionText = slider.closest('.slider-question-row').querySelector('.question-text').textContent.trim();
+            detailedText += `${questionText} ${value}\n`;
+        }
     });
 
-    let interpretationText = '';
     const percentageScore = (totalScore / 20) * 100;
+    let interpretationText = '';
     if (percentageScore <= 25) {
         interpretationText = "Mild nasal obstruction.";
     } else if (percentageScore <= 50) {
