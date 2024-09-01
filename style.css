@@ -147,28 +147,25 @@ body {
     transform: translateY(-2px);
 }
 
-/* Compact initial Results Panel */
+/* Results Panel for Desktop */
 .results-panel {
-    width: 100%;
-    padding: 5px 10px;
+    width: 30%;
+    padding: 10px;
     background-color: #ffffff;
-    border-radius: 10px 10px 0 0;
-    border-top: 2px solid #007bff;
-    box-shadow: 0 -4px 10px rgba(0, 123, 255, 0.3);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: block;
+    border-radius: 10px;
+    border: 2px solid #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
     text-align: left;
-    transition: all 0.3s ease;
-    max-height: 40px; /* Very compact initial size */
+    max-height: 40px; /* Initial compact size */
     overflow: hidden;
-    z-index: 1000;
+    transition: all 0.3s ease;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
 }
 
 .results-panel.expanded {
-    max-height: 300px; /* Expands to show more content */
+    max-height: 300px;
     padding: 20px;
 }
 
