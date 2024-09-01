@@ -59,3 +59,12 @@ function copyToClipboard(resultOnly = true) {
         alert("Copied to clipboard!");
     });
 }
+
+document.addEventListener('scroll', function () {
+    const resultsPanel = document.querySelector('.results-panel');
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        resultsPanel.classList.add('expanded');
+    } else {
+        resultsPanel.classList.remove('expanded');
+    }
+});
