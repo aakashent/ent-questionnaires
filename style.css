@@ -13,16 +13,17 @@ body {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    max-width: 1400px;  /* Increased max-width for desktop */
+    max-width: 1200px;  /* Reduced max-width for desktop */
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     padding: 20px;
     flex-direction: row;
+    gap: 20px;  /* Add space between the questionnaire and results box */
 }
 
 .left-panel {
-    width: 65%;
+    width: 60%;  /* Adjusted width to reduce overall width */
 }
 
 .header {
@@ -32,8 +33,8 @@ body {
 
 .header label {
     font-weight: bold;
-    font-size: 28px;  /* Increased font size for better visibility */
-    color: #007bff;   /* Title color */
+    font-size: 28px;
+    color: #007bff;
 }
 
 #scoreType {
@@ -121,40 +122,9 @@ body {
     background-color: white;
 }
 
-/* STOP-Bang Yes/No Button Styling */
-.stopbang-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.stopbang-buttons button {
-    flex: 1;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.stopbang-buttons button.selected {
-    background-color: #0056b3;
-    color: white;
-}
-
-.stopbang-buttons button:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-}
-
-/* Enhanced Results Panel for Desktop */
+/* Results Panel for Desktop */
 .results-panel {
-    width: 35%;  /* Increased width for desktop */
+    width: 35%;  /* Reduced width for results box */
     padding: 20px;
     background-color: #f7f7f7;
     border-radius: 10px;
@@ -166,11 +136,7 @@ body {
     z-index: 1000;
     max-height: none;
     overflow: hidden;
-}
-
-/* Align the Results Panel with the top of the questionnaire */
-.results-panel {
-    margin-top: 20px;
+    margin-top: 0;  /* Align the top of the results box with the top of the questionnaire */
 }
 
 /* Styling for the score */
@@ -228,7 +194,7 @@ body {
     .results-panel {
         width: 100%;
         position: fixed;
-        bottom: 0;
+        bottom: 0; /* Ensure it sticks to the bottom */
         left: 0;
         right: 0;
         padding: 10px 20px;
