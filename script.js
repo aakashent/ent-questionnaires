@@ -62,7 +62,15 @@ function copyToClipboard(resultOnly = true) {
 
 document.addEventListener('scroll', function () {
     const resultsPanel = document.querySelector('.results-panel');
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+    const lastQuestion = document.querySelector('.questionnaire-list .slider-question-row:last-child, .questionnaire-list .question-row:last-child');
+
+    if (!lastQuestion) return; // Safeguard in case there's no last question found
+
+    const lastQuestionBottom = lastQuestion.getBoundingClientRect().bottom;
+    const viewportHeight = window.innerHeight;
+
+    // Adjust the +20 value to slightly delay the results panel expansion after the last question
+    if (lastQuestionBottom <= viewportHeight + 20) {
         resultsPanel.classList.add('expanded');
     } else {
         resultsPanel.classList.remove('expanded');
