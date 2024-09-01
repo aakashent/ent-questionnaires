@@ -62,17 +62,48 @@ function copyToClipboard(resultOnly = true) {
 
 document.addEventListener('scroll', function () {
     const resultsPanel = document.querySelector('.results-panel');
-    const lastQuestion = document.querySelector('.questionnaire-list .slider-question-row:last-child, .questionnaire-list .question-row:last-child');
 
-    if (!lastQuestion) return; // Safeguard in case there's no last question found
+    // Only apply the scroll behavior on mobile (max-width: 768px)
+    if (window.innerWidth <= 768) {
+        const lastQuestion = document.querySelector('.questionnaire-list .slider-question-row:last-child, .questionnaire-list .question-row:last-child');
 
-    const lastQuestionBottom = lastQuestion.getBoundingClientRect().bottom;
-    const viewportHeight = window.innerHeight;
+        if (!lastQuestion) return; // Safeguard in case there's no last question found
 
-    // Adjust the +20 value to slightly delay the results panel expansion after the last question
-    if (lastQuestionBottom <= viewportHeight + 20) {
-        resultsPanel.classList.add('expanded');
-    } else {
-        resultsPanel.classList.remove('expanded');
+        const lastQuestionBottom = lastQuestion.getBoundingClientRect().bottom;
+        const viewportHeight = window.innerHeight;
+
+        // Adjust the +20 value to slightly delay the results panel expansion after the last question
+        if (lastQuestionBottom <= viewportHeight + 20) {
+            resultsPanel.classList.add('expanded');
+        } else {
+            resultsPanel.classList.remove('expanded');
+        }
     }
 });
+
+function copyResultOnly() {
+    const scoreResult = document.getElementById('scoreResult').textContent;
+    navigator.clipboard.writeText(scoreResult).then(() => {
+        alert('Score copied to clipboard!');
+    });
+}
+
+function copyDetailedReport() {
+    const scoreResult = document.getElementById('scoreResult').textContent;
+    const interpretation = document.getElementById('interpretation').textContent;
+    const detailedReport = `${scoreResult}\n${interpretation}`;
+    navigator.clipboard.writeText(detailedReport).then(() => {
+        alert('Detailed report copied to clipboard!');
+    });
+}
+
+// Sample function to dynamically update score (you will need to link this with your form inputs)
+function updateScore(score) {
+    const scoreResultElement = document.getElementById('scoreResult');
+    scoreResultElement.textContent = `Score: ${score}`;
+    
+    const interpretationElement = document.getElementById('interpretation');
+    // Update interpretation based on the score
+    interpretationElement.textContent = score > 10 ? 'High risk' : 'Low risk';
+}
+
