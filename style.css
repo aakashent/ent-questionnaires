@@ -147,10 +147,10 @@ body {
     transform: translateY(-2px);
 }
 
-/* Results Panel */
+/* Compact initial Results Panel */
 .results-panel {
     width: 30%;
-    padding: 20px;
+    padding: 10px;
     background-color: #ffffff;
     border-radius: 10px;
     border: 2px solid #007bff;
@@ -158,20 +158,38 @@ body {
     display: none;
     text-align: center;
     transition: all 0.3s ease;
+    max-height: 80px; /* Initial compact size */
+    overflow: hidden;
+}
+
+.results-panel.expanded {
+    max-height: 300px; /* Expands to show more content */
+    padding: 20px;
 }
 
 /* Styling for the score */
 #scoreResult {
-    font-size: 40px;
+    font-size: 24px;
     color: #007bff;
-    margin-bottom: 10px;
     font-weight: bold;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
     line-height: 1.2;
 }
 
+/* Initially hidden content */
+#interpretation,
+#copyButtons {
+    display: none;
+}
+
+.results-panel.expanded #interpretation,
+.results-panel.expanded #copyButtons {
+    display: block;
+}
+
+/* Styling for interpretation */
 #interpretation {
-    font-size: 18px;
+    font-size: 16px;
     color: #333;
     margin-top: 10px;
 }
@@ -218,19 +236,23 @@ body {
         bottom: 0;
         left: 0;
         right: 0;
-        padding: 15px 10px;
+        padding: 10px;
         background-color: #ffffff;
         border-radius: 10px 10px 0 0;
         box-shadow: 0 -4px 10px rgba(0, 123, 255, 0.3);
         display: block;
         z-index: 1000;
         transform: translateY(calc(100% - 60px));
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, max-height 0.3s ease;
         text-align: center;
+        max-height: 80px; /* Initial compact size on mobile */
+        overflow: hidden;
     }
 
     .results-panel.expanded {
         transform: translateY(0);
+        max-height: 300px; /* Expands to show more content */
+        padding: 20px;
     }
 
     .questionnaire-list {
@@ -238,12 +260,7 @@ body {
     }
 
     #scoreResult {
-        font-size: 36px;
-        margin-bottom: 15px;
-    }
-
-    #copyButtons {
-        margin-top: 15px;
+        font-size: 20px;
     }
 
     #copyButtons button {
