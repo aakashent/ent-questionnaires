@@ -149,26 +149,27 @@ body {
 
 /* Compact initial Results Panel */
 .results-panel {
-    width: 30%;
+    width: 100%;
     padding: 5px 10px;
     background-color: #ffffff;
-    border-radius: 10px;
-    border: 2px solid #007bff;
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
-    display: block; /* Ensure it's always visible */
+    border-radius: 10px 10px 0 0;
+    border-top: 2px solid #007bff;
+    box-shadow: 0 -4px 10px rgba(0, 123, 255, 0.3);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
     text-align: left;
     transition: all 0.3s ease;
     max-height: 40px; /* Very compact initial size */
     overflow: hidden;
-    position: fixed;
-    top: 20px;
-    left: 20px;
+    z-index: 1000;
 }
 
 .results-panel.expanded {
     max-height: 300px; /* Expands to show more content */
     padding: 20px;
-    width: 40%; /* Expands width when expanded */
 }
 
 /* Styling for the score */
