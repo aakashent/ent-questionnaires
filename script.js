@@ -60,26 +60,55 @@ function copyToClipboard(resultOnly = true) {
     });
 }
 
-document.addEventListener('scroll', function () {
+document.addEventListener('DOMContentLoaded', function () {
     const resultsPanel = document.querySelector('.results-panel');
 
-    // Only apply the scroll behavior on mobile (max-width: 768px)
-    if (window.innerWidth <= 768) {
-        const lastQuestion = document.querySelector('.questionnaire-list .slider-question-row:last-child, .questionnaire-list .question-row:last-child');
+    // Function to manage the sticky behavior on desktop
+    function handleDesktopSticky() {
+        if (window.innerWidth > 768) { // Only apply on desktop
+            const leftPanel = document.querySelector('.left-panel');
+            const leftPanelBottom = leftPanel.getBoundingClientRect().bottom;
+            const viewportHeight = window.innerHeight;
 
-        if (!lastQuestion) return; // Safeguard in case there's no last question found
-
-        const lastQuestionBottom = lastQuestion.getBoundingClientRect().bottom;
-        const viewportHeight = window.innerHeight;
-
-        // Adjust the +20 value to slightly delay the results panel expansion after the last question
-        if (lastQuestionBottom <= viewportHeight + 40) {
-            resultsPanel.classList.add('expanded');
+            if (leftPanelBottom < viewportHeight) {
+                resultsPanel.style.position = 'absolute';
+                resultsPanel.style.top = `${leftPanelBottom - resultsPanel.offsetHeight}px`;
+            } else {
+                resultsPanel.style.position = '-webkit-sticky';
+                resultsPanel.style.position = 'sticky';
+                resultsPanel.style.top = '20px';
+            }
         } else {
-            resultsPanel.classList.remove('expanded');
+            resultsPanel.style.position = 'fixed';
+            resultsPanel.style.bottom = '0';
+            resultsPanel.style.top = '';
         }
     }
+
+    window.addEventListener('scroll', handleDesktopSticky);
+    window.addEventListener('resize', handleDesktopSticky);
+
+    handleDesktopSticky(); // Initial call to set up the sticky behavior
+
+    // Expand results panel on mobile when scrolled to the bottom of the questionnaire
+    document.addEventListener('scroll', function () {
+        if (window.innerWidth <= 768) { // Apply only on mobile
+            const lastQuestion = document.querySelector('.questionnaire-list .slider-question-row:last-child, .questionnaire-list .question-row:last-child');
+
+            if (!lastQuestion) return;
+
+            const lastQuestionBottom = lastQuestion.getBoundingClientRect().bottom;
+            const viewportHeight = window.innerHeight;
+
+            if (lastQuestionBottom <= viewportHeight + 40) {
+                resultsPanel.classList.add('expanded');
+            } else {
+                resultsPanel.classList.remove('expanded');
+            }
+        }
+    });
 });
+
 
 function copyResultOnly() {
     const scoreResult = document.getElementById('scoreResult').textContent;
