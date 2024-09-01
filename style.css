@@ -1,13 +1,277 @@
-document.addEventListener('scroll', function () {
-    const resultsPanel = document.querySelector('.results-panel');
-    const lastQuestion = document.querySelector('.questionnaire-list .slider-question-row:last-child, .questionnaire-list .question-row:last-child');
+/* General styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 
-    const lastQuestionBottom = lastQuestion.getBoundingClientRect().bottom;
-    const viewportHeight = window.innerHeight;
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    flex-direction: row;
+}
 
-    if (lastQuestionBottom <= viewportHeight + 20) { // Adjust the "+ 20" to delay the appearance slightly
-        resultsPanel.classList.add('expanded');
-    } else {
-        resultsPanel.classList.remove('expanded');
+.left-panel {
+    width: 65%;
+}
+
+.header {
+    margin-bottom: 20px;
+}
+
+.header label {
+    font-weight: bold;
+}
+
+#scoreType {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    font-size: 16px;
+    color: #333;
+    margin-top: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23333" d="M2 0L0 2h4z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 8px 10px;
+}
+
+.questionnaire-list {
+    background-color: #00796b;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+}
+
+/* Slider scale text above sliders */
+.slider-scale-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 0 5px;
+}
+
+.scale-text-left,
+.scale-text-right {
+    color: white;
+    font-size: 14px;
+}
+
+.scale-text-left {
+    text-align: left;
+}
+
+.scale-text-right {
+    text-align: right;
+}
+
+/* Non-slider questions */
+.question-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Slider questions */
+.slider-question-row {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.question-text {
+    padding: 10px;
+    background-color: #00796b;
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.answer-input {
+    display: flex;
+    align-items: center;
+}
+
+.answer-input select,
+.answer-input input[type="checkbox"],
+.answer-input input[type="range"] {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: white;
+}
+
+.answer-input button {
+    padding: 10px;
+    margin: 0 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.answer-input button.selected {
+    background-color: #0056b3;
+    color: white;
+}
+
+.answer-input button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Compact initial Results Panel */
+.results-panel {
+    width: 100%;
+    padding: 5px 10px;
+    background-color: #ffffff;
+    border-radius: 10px 10px 0 0;
+    border-top: 2px solid #007bff;
+    box-shadow: 0 -4px 10px rgba(0, 123, 255, 0.3);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    text-align: left;
+    transition: all 0.3s ease;
+    max-height: 40px; /* Very compact initial size */
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.results-panel.expanded {
+    max-height: 300px; /* Expands to show more content */
+    padding: 20px;
+}
+
+/* Styling for the score */
+#scoreResult {
+    font-size: 18px;
+    color: #007bff;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+    line-height: 1.2;
+    margin: 0;
+}
+
+/* Initially hidden content */
+#interpretation,
+#copyButtons {
+    display: none;
+}
+
+.results-panel.expanded #interpretation,
+.results-panel.expanded #copyButtons {
+    display: block;
+}
+
+/* Styling for interpretation */
+#interpretation {
+    font-size: 16px;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* Styling for copy buttons */
+#copyButtons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+#copyButtons button {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 45%;
+    box-shadow: 0 4px 6px rgba(40, 167, 69, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#copyButtons button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 10px;
     }
-});
+
+    .left-panel {
+        width: 100%;
+    }
+
+    .results-panel {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 5px 10px;
+        background-color: #ffffff;
+        border-radius: 10px 10px 0 0;
+        box-shadow: 0 -4px 10px rgba(0, 123, 255, 0.3);
+        display: block;
+        z-index: 1000;
+        transform: translateY(calc(100% - 40px));
+        transition: transform 0.3s ease, max-height 0.3s ease;
+        text-align: left;
+        max-height: 40px; /* Very compact initial size on mobile */
+        overflow: hidden;
+    }
+
+    .results-panel.expanded {
+        transform: translateY(0);
+        max-height: 300px; /* Expands to show more content */
+        padding: 20px;
+    }
+
+    .questionnaire-list {
+        margin-bottom: 60px;
+    }
+
+    #scoreResult {
+        font-size: 16px;
+    }
+
+    #copyButtons button {
+        padding: 10px 15px;
+        font-size: 14px;
+        width: 48%;
+    }
+}
