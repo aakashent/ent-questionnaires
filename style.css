@@ -121,7 +121,7 @@ body {
     background-color: white;
 }
 
-/* Enhanced Results Panel for Desktop */
+/* Results Panel for Desktop */
 .results-panel {
     width: 30%;
     padding: 20px;
@@ -129,11 +129,11 @@ body {
     border-radius: 10px;
     border: 2px solid #007bff;
     box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
-    position: sticky;
-    top: 20px;
+    position: sticky;  /* Make it sticky */
+    top: 20px;         /* Stick to 20px from the top when scrolling */
     text-align: left;
     z-index: 1000;
-    max-height: none; /* Allow full height */
+    max-height: none;
     overflow: hidden;
 }
 
