@@ -1,20 +1,29 @@
-/* General styles remain unchanged */
+/* General styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 
 .container {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1200px;  /* Adjusted max-width for desktop */
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     padding: 20px;
     flex-direction: row;
-    gap: 20px;
+    gap: 20px;  /* Space between questionnaire and results box */
 }
 
 .left-panel {
-    width: 60%;
+    width: 60%;  /* Width for questionnaire panel */
 }
 
 .header {
@@ -54,7 +63,7 @@
     color: white;
 }
 
-/* Slider and non-slider question rows */
+/* Positioning the slider scales above the slider */
 .slider-scale-wrapper {
     display: flex;
     justify-content: space-between;
@@ -73,10 +82,18 @@
     color: white;
 }
 
-.question-row,
-.slider-question-row {
+/* Non-slider questions */
+.question-row {
     display: grid;
     grid-template-columns: 2fr 1fr;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Slider questions */
+.slider-question-row {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
     align-items: center;
     margin-bottom: 20px;
 }
@@ -108,7 +125,7 @@
 /* STOP-Bang Yes/No Button Styling */
 .stopbang-buttons {
     display: flex;
-    gap: 10px;
+    gap: 10px; /* Space between Yes and No buttons */
 }
 
 .stopbang-buttons button {
@@ -207,25 +224,26 @@
     }
 
     .results-panel {
-        width: 100%;
-        position: fixed;
-        bottom: 0;
+        width: 95%;
+        position: sticky;
+        bottom: 0; /* Stick to the bottom */
         left: 0;
         right: 0;
-        padding: 10px 20px;
+        padding: 10px 10px;
         background-color: #ffffff;
         border-radius: 10px 10px 0 0;
         box-shadow: 0 -4px 10px rgba(0, 123, 255, 0.3);
         z-index: 1000;
-        transform: translateY(0); /* Ensure it is at the bottom */
+        transform: translateY(calc(100% - 40px)); /* Initially collapsed */
         transition: transform 0.3s ease, max-height 0.3s ease;
-        max-height: 40px;
+        text-align: left;
+        max-height: 40px; /* Compact size on mobile */
         overflow: hidden;
     }
 
     .results-panel.expanded {
-        transform: translateY(0);
-        max-height: 300px;
+        transform: translateY(0); /* Expand the panel */
+        max-height: 100px;
         padding: 20px;
     }
 
