@@ -234,8 +234,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* Mobile adjustments */
-@media (max-width: 768px) {
+@media (max-width: 960px) {
     .container {
         flex-direction: column;
         padding: 10px;
