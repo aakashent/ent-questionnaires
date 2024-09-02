@@ -252,11 +252,11 @@ body {
         right: 0;
         width: 100%;
         padding: 10px 20px;
-        background-color: #ffffff;
+        background-color: #f54242;
         border-radius: 10px 10px 0 0;
         box-shadow: 0 -4px 10px rgba(0, 123, 255, 0.3);
         z-index: 1000;
-        transform: translateY(calc(100% - 40px)); /* Collapsed */
+        transform: translateY(calc(100% - 60px)); /* Collapsed */
         transition: transform 0.3s ease, max-height 0.3s ease;
         max-height: 40px; /* Compact size */
         overflow: hidden;
