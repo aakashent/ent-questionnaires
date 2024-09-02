@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const lastQuestionBottom = lastQuestion.getBoundingClientRect().bottom;
             const viewportHeight = window.innerHeight;
 
-            if (lastQuestionBottom <= viewportHeight + 20) {
+            if (lastQuestionBottom <= viewportHeight + 150) {
                 resultsPanel.classList.add('expanded');
             } else {
                 resultsPanel.classList.remove('expanded');
