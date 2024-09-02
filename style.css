@@ -234,6 +234,7 @@ body {
     transform: translateY(-2px);
 }
 
+/* Mobile adjustments */
 @media (max-width: 960px) {
     .container {
         flex-direction: column;
@@ -247,7 +248,7 @@ body {
     .results-panel {
         width: 100%;
         position: fixed;
-        bottom: 0; /* Stick to the bottom */
+        bottom: 0;
         left: 0;
         right: 0;
         padding: 10px 20px;
