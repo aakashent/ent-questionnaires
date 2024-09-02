@@ -74,10 +74,10 @@ document.addEventListener('DOMContentLoaded', function () {
             // Mobile behavior
             resultsPanel.style.position = 'sticku';
             resultsPanel.style.bottom = '0';
-            //resultsPanel.style.top = '';  // Clear the top
+            resultsPanel.style.top = '';  // Clear the top
             resultsPanel.style.width = '100%';
             resultsPanel.style.transform = 'translateY(calc(100% - 40px))';  // Ensure it's collapsed
-            resultsPanel.style.backgroundColor = 'red';
+            //resultsPanel.style.backgroundColor = 'red';
         }
     }
 
