@@ -72,11 +72,12 @@ document.addEventListener('DOMContentLoaded', function () {
             resultsPanel.style.transform = '';
         } else {
             // Mobile behavior
-            resultsPanel.style.position = 'fixed';
+            resultsPanel.style.position = 'sticku';
             resultsPanel.style.bottom = '0';
-            resultsPanel.style.top = '';  // Clear the top
+            //resultsPanel.style.top = '';  // Clear the top
             resultsPanel.style.width = '100%';
             resultsPanel.style.transform = 'translateY(calc(100% - 40px))';  // Ensure it's collapsed
+            resultsPanel.style.backgroundColor = 'red';
         }
     }
 
@@ -95,7 +96,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (lastQuestionBottom <= viewportHeight + 20) {
                 resultsPanel.classList.add('expanded');
-                resultsPanel.style.backgroundColor = 'red';
             } else {
                 resultsPanel.classList.remove('expanded');
             }
