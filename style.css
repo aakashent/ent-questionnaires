@@ -233,7 +233,7 @@ background-color: #0056b3; transform: translateY (-2px);
     }
 
     .results-panel {
-        width: 80%;
+        width: 70%;
         position: sticky;
         bottom: 0; /* Stick to the bottom */
         left: 0;
