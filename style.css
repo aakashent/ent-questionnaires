@@ -234,7 +234,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* Mobile adjustments */
+/* Mobile-specific styles */
 @media (max-width: 960px) {
     .container {
         flex-direction: column;
@@ -246,25 +246,24 @@ body {
     }
 
     .results-panel {
-        width: 100%;
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
+        width: 100%;
         padding: 10px 20px;
         background-color: #ffffff;
         border-radius: 10px 10px 0 0;
         box-shadow: 0 -4px 10px rgba(0, 123, 255, 0.3);
         z-index: 1000;
-        transform: translateY(calc(100% - 40px)); /* Initially collapsed */
+        transform: translateY(calc(100% - 40px)); /* Collapsed */
         transition: transform 0.3s ease, max-height 0.3s ease;
-        text-align: left;
-        max-height: 40px; /* Compact size on mobile */
+        max-height: 40px; /* Compact size */
         overflow: hidden;
     }
 
     .results-panel.expanded {
-        transform: translateY(0); /* Expand the panel */
+        transform: translateY(0); /* Expanded */
         max-height: 300px;
         padding: 20px;
     }
