@@ -233,7 +233,7 @@ background-color: #0056b3; transform: translateY (-2px);
     }
 
     .results-panel {
-        width: 95%;
+        width: 80%;
         position: sticky;
         bottom: 0; /* Stick to the bottom */
         left: 0;
@@ -243,10 +243,10 @@ background-color: #0056b3; transform: translateY (-2px);
         border-radius: 10px 10px 0 0;
         box-shadow: 0 -4px 10px rgba(0, 123, 255, 0.3);
         z-index: 1000;
-        transform: translateY(calc(100% - 40px)); /* Initially collapsed */
+        transform: translateY(calc(100% - 60px)); /* Initially collapsed */
         transition: transform 0.3s ease, max-height 0.3s ease;
         text-align: left;
-        max-height: 40px; /* Compact size on mobile */
+        max-height: 60px; /* Compact size on mobile */
         overflow: hidden;
     }
 
