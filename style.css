@@ -1,13 +1,4 @@
-/* General styling */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f9f9f9;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
+/* General styles remain unchanged */
 
 .container {
     display: flex;
@@ -63,6 +54,7 @@ body {
     color: white;
 }
 
+/* Slider and non-slider question rows */
 .slider-scale-wrapper {
     display: flex;
     justify-content: space-between;
@@ -81,16 +73,10 @@ body {
     color: white;
 }
 
-.question-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
+.question-row,
 .slider-question-row {
     display: grid;
-    grid-template-columns: 3fr 2fr;
+    grid-template-columns: 2fr 1fr;
     align-items: center;
     margin-bottom: 20px;
 }
@@ -119,36 +105,10 @@ body {
     background-color: white;
 }
 
-/* General Answer Input Button Styling */
-.answer-input button {
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin: 5px;
-}
-
-.answer-input button.selected {
-    background-color: #0056b3;
-    color: white;
-}
-
-.answer-input button:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-}
-
-/* STOP-Bang Yes/No Button Specific Styling */
+/* STOP-Bang Yes/No Button Styling */
 .stopbang-buttons {
     display: flex;
-    gap: 10px; /* Space between Yes and No buttons */
+    gap: 10px;
 }
 
 .stopbang-buttons button {
@@ -203,6 +163,7 @@ body {
     margin: 0;
 }
 
+/* Interpretation styling */
 #interpretation {
     font-size: 16px;
     color: #333;
@@ -234,7 +195,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* Mobile-specific styles */
+/* Mobile adjustments */
 @media (max-width: 960px) {
     .container {
         flex-direction: column;
@@ -246,24 +207,24 @@ body {
     }
 
     .results-panel {
+        width: 100%;
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
-        width: 100%;
         padding: 10px 20px;
-        background-color: #f54242;
+        background-color: #ffffff;
         border-radius: 10px 10px 0 0;
         box-shadow: 0 -4px 10px rgba(0, 123, 255, 0.3);
         z-index: 1000;
-        transform: translateY(calc(100% - 60px)); /* Collapsed */
+        transform: translateY(0); /* Ensure it is at the bottom */
         transition: transform 0.3s ease, max-height 0.3s ease;
-        max-height: 40px; /* Compact size */
+        max-height: 40px;
         overflow: hidden;
     }
 
     .results-panel.expanded {
-        transform: translateY(0); /* Expanded */
+        transform: translateY(0);
         max-height: 300px;
         padding: 20px;
     }
