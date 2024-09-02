@@ -60,6 +60,48 @@ function copyToClipboard(resultOnly = true) {
     });
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    const resultsPanel = document.querySelector('.results-panel');
+
+    function updateResultsPanelPosition() {
+        if (window.innerWidth > 960) {
+            // Desktop behavior
+            resultsPanel.style.position = 'sticky';
+            resultsPanel.style.top = '20px';
+            resultsPanel.style.bottom = '';
+            resultsPanel.style.transform = '';
+        } else {
+            // Mobile behavior
+            resultsPanel.style.position = 'fixed';
+            resultsPanel.style.bottom = '0';
+            resultsPanel.style.top = '';  // Clear the top
+            resultsPanel.style.width = '100%';
+            resultsPanel.style.transform = 'translateY(calc(100% - 40px))';  // Ensure it's collapsed
+        }
+    }
+
+    window.addEventListener('resize', updateResultsPanelPosition);
+    updateResultsPanelPosition();  // Ensure the correct behavior is applied on load
+
+    // Expand results panel on mobile when scrolled to the bottom of the questionnaire
+    document.addEventListener('scroll', function () {
+        if (window.innerWidth <= 960) {
+            const lastQuestion = document.querySelector('.questionnaire-list .slider-question-row:last-child, .questionnaire-list .question-row:last-child');
+
+            if (!lastQuestion) return;
+
+            const lastQuestionBottom = lastQuestion.getBoundingClientRect().bottom;
+            const viewportHeight = window.innerHeight;
+
+            if (lastQuestionBottom <= viewportHeight + 20) {
+                resultsPanel.classList.add('expanded');
+                resultsPanel.style.backgroundColor = 'red';
+            } else {
+                resultsPanel.classList.remove('expanded');
+            }
+        }
+    });
+});
 
 
 
