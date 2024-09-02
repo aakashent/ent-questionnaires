@@ -64,11 +64,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const resultsPanel = document.querySelector('.results-panel');
 
     function handleStickyBehavior() {
-        if (window.innerWidth > 768) {
-            // Desktop: Keep results panel sticky and on the right
+        if (window.innerWidth > 960) {  // Adjusted breakpoint to 960px
+            // Desktop: Keep results panel sticky and aligned with the questionnaire
             resultsPanel.style.position = 'sticky';
             resultsPanel.style.top = '20px';
-            resultsPanel.style.bottom = ''; // Clear the bottom
+            resultsPanel.style.bottom = ''; 
             resultsPanel.style.transform = '';
         } else {
             // Mobile: Keep results panel fixed at the bottom
@@ -80,11 +80,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     window.addEventListener('resize', handleStickyBehavior);
-    handleStickyBehavior(); // Call once to apply the correct behavior on load
+    handleStickyBehavior(); 
 
     // Expand results panel on mobile when scrolled to the bottom of the questionnaire
     document.addEventListener('scroll', function () {
-        if (window.innerWidth <= 768) { // Apply only on mobile
+        if (window.innerWidth <= 960) { // Apply only on mobile
             const lastQuestion = document.querySelector('.questionnaire-list .slider-question-row:last-child, .questionnaire-list .question-row:last-child');
 
             if (!lastQuestion) return;
