@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     window.addEventListener('resize', handleStickyBehavior);
-    handleStickyBehavior(); 
+    handleStickyBehavior(); // Call once to apply the correct behavior on load
 
     // Expand results panel on mobile when scrolled to the bottom of the questionnaire
     document.addEventListener('scroll', function () {
