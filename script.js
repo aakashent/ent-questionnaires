@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
             resultsPanel.style.position = 'sticku';
             resultsPanel.style.bottom = '0';
             resultsPanel.style.top = '';  // Clear the top
-            resultsPanel.style.width = '100%';
+            resultsPanel.style.width = '90%';
             resultsPanel.style.transform = 'translateY(calc(100% - 60px))';  // Ensure it's collapsed
             //resultsPanel.style.backgroundColor = 'red';
         }
