@@ -101,6 +101,25 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
+
+    // Hide results panel on mobile until a questionnaire is selected
+    dropdown.addEventListener('change', function() {
+        if (window.innerWidth <= 950) { // Ensure we are on mobile
+            if (this.value) { // If a valid selection is made
+                resultsPanel.style.display = 'block'; // Show the results panel
+            } else {
+                resultsPanel.style.display = 'none'; // Hide if no selection
+            }
+        }
+    });
+
+    // Optional: Handle window resize to hide the panel if resized to mobile without a selection
+    window.addEventListener('resize', function() {
+        if (window.innerWidth <= 950 && !dropdown.value) {
+            resultsPanel.style.display = 'none';
+        }
+    });
+    
 });
 
 
