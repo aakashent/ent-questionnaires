@@ -227,6 +227,7 @@ body {
     }
 
     .results-panel {
+        display: none;
         width: 70%;
         position: sticky;
         bottom: 0; /* Stick to the bottom */
