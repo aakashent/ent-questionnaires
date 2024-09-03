@@ -129,7 +129,7 @@ body {
     gap: 10px; /* Space between Yes and No buttons */
 }
 
-.stopbang-buttons button {
+.answer-input button {
     flex: 1;
     padding: 10px;
     border-radius: 5px;
@@ -145,12 +145,12 @@ body {
     margin: 5px 0; /* Ensure some space between the buttons vertically */
 }
 
-.stopbang-buttons button.selected {
+.answer-input button.selected {
     background-color: #0056b3;
     color: white;
 }
 
-.stopbang-buttons button:hover {
+.answer-input button:hover {
     background-color: #0056b3;
     transform: translateY(-2px);
 }
