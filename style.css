@@ -150,6 +150,7 @@ background-color: #0056b3; transform: translateY (-2px);
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
     transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 5px 0; /* Ensure some space between the buttons vertically */
 }
 
 .stopbang-buttons button.selected {
@@ -161,6 +162,7 @@ background-color: #0056b3; transform: translateY (-2px);
     background-color: #0056b3;
     transform: translateY(-2px);
 }
+
 
 /* Results Panel for Desktop */
 .results-panel {
