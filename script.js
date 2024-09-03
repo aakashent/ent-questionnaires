@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
             resultsPanel.style.bottom = '0';
             resultsPanel.style.top = '';  // Clear the top
             resultsPanel.style.width = '100%';
-            resultsPanel.style.transform = 'translateY(calc(100% - 40px))';  // Ensure it's collapsed
+            resultsPanel.style.transform = 'translateY(calc(100% - 60px))';  // Ensure it's collapsed
             //resultsPanel.style.backgroundColor = 'red';
         }
     }
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const lastQuestionBottom = lastQuestion.getBoundingClientRect().bottom;
             const viewportHeight = window.innerHeight;
 
-            if (lastQuestionBottom <= viewportHeight + 150) {
+            if (lastQuestionBottom <= viewportHeight + 20) {
                 resultsPanel.classList.add('expanded');
             } else {
                 resultsPanel.classList.remove('expanded');
