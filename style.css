@@ -122,14 +122,6 @@ body {
     background-color: white;
 }
 
-.answer-input button.selected {
-background-color: #0056b3;
-color: white;
-}
-
-. answer-input button:hover {
-background-color: #0056b3; transform: translateY (-2px);
-}
 
 /* STOP-Bang Yes/No Button Styling */
 .stopbang-buttons {
