@@ -62,10 +62,10 @@ function calculateEdtq7() {
         }
     });
 
-    const averageScore = (totalScore+7) / formElements.length;
+    const averageScore = totalScore / formElements.length;
     let interpretationText = '';
     if (averageScore <= 2) {
-        interpretationText = "Mild Eustachian Tube Dysfunction.";
+        interpretationText = "Normal";
     } else if (averageScore <= 3) {
         interpretationText = "Moderate Eustachian Tube Dysfunction.";
     } else {
