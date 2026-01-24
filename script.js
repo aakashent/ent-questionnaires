@@ -62,6 +62,7 @@ function copyToClipboard(resultOnly = true) {
 
 document.addEventListener('DOMContentLoaded', function () {
     const resultsPanel = document.querySelector('.results-panel');
+    const dropdown = document.getElementById('scoreType');
 
     function updateResultsPanelPosition() {
         if (window.innerWidth > 960) {
@@ -70,37 +71,23 @@ document.addEventListener('DOMContentLoaded', function () {
             resultsPanel.style.top = '20px';
             resultsPanel.style.bottom = '';
             resultsPanel.style.transform = '';
+            resultsPanel.style.left = '';
+            resultsPanel.style.right = '';
+            resultsPanel.style.width = '';
         } else {
             // Mobile behavior
-            resultsPanel.style.position = 'sticku';
-            resultsPanel.style.bottom = '0';
+            resultsPanel.style.position = 'fixed';
+            resultsPanel.style.bottom = 'max(16px, env(safe-area-inset-bottom))';
             resultsPanel.style.top = '';  // Clear the top
-            resultsPanel.style.width = '90%';
-            resultsPanel.style.transform = 'translateY(calc(100% - 60px))';  // Ensure it's collapsed
-            //resultsPanel.style.backgroundColor = 'red';
+            resultsPanel.style.left = '16px';
+            resultsPanel.style.right = '16px';
+            resultsPanel.style.width = 'auto';
+            resultsPanel.style.transform = 'none';
         }
     }
 
     window.addEventListener('resize', updateResultsPanelPosition);
     updateResultsPanelPosition();  // Ensure the correct behavior is applied on load
-
-    // Expand results panel on mobile when scrolled to the bottom of the questionnaire
-    document.addEventListener('scroll', function () {
-        if (window.innerWidth <= 960) {
-            const lastQuestion = document.querySelector('.questionnaire-list .slider-question-row:last-child, .questionnaire-list .question-row:last-child');
-
-            if (!lastQuestion) return;
-
-            const lastQuestionBottom = lastQuestion.getBoundingClientRect().bottom;
-            const viewportHeight = window.innerHeight;
-
-            if (lastQuestionBottom <= viewportHeight - 100) {
-                resultsPanel.classList.add('expanded');
-            } else {
-                resultsPanel.classList.remove('expanded');
-            }
-        }
-    });
 
     // Hide results panel on mobile until a questionnaire is selected
     dropdown.addEventListener('change', function() {
@@ -149,4 +136,3 @@ function updateScore(score) {
     // Update interpretation based on the score
     interpretationElement.textContent = score > 10 ? 'High risk' : 'Low risk';
 }
-

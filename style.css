@@ -280,32 +280,30 @@ body {
     }
 
     .results-panel {
-        display: none;
+        display: block;
         width: 100%;
-        position: sticky;
-        bottom: 0; /* Stick to the bottom */
-        left: 0;
-        right: 0;
-        padding: 12px 12px;
+        position: fixed;
+        bottom: max(16px, env(safe-area-inset-bottom));
+        left: 16px;
+        right: 16px;
+        padding: 14px 16px;
         background-color: #ffffff;
         border-radius: var(--radius-md) var(--radius-md) 0 0;
         box-shadow: 0 -4px 10px rgba(0, 123, 255, 0.3);
         z-index: 1000;
-        transform: translateY(calc(100% - 60px)); /* Initially collapsed */
-        transition: transform 0.3s ease, max-height 0.3s ease;
+        transform: none;
+        transition: box-shadow 0.3s ease;
         text-align: left;
-        max-height: 80px; /* Compact size on mobile */
-        overflow: hidden;
+        max-height: none;
+        overflow: visible;
     }
 
     .results-panel.expanded {
-        transform: translateY(0); /* Expand the panel */
-        max-height: 120px;
         padding: 20px;
     }
 
     .questionnaire-list {
-        margin-bottom: 60px;
+        margin-bottom: 180px;
     }
 
     #scoreResult {
