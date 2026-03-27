@@ -62,64 +62,28 @@ function copyToClipboard(resultOnly = true) {
 
 document.addEventListener('DOMContentLoaded', function () {
     const resultsPanel = document.querySelector('.results-panel');
+    const dropdown = document.getElementById('scoreType');
 
-    function updateResultsPanelPosition() {
-        if (window.innerWidth > 960) {
-            // Desktop behavior
-            resultsPanel.style.position = 'sticky';
-            resultsPanel.style.top = '20px';
-            resultsPanel.style.bottom = '';
-            resultsPanel.style.transform = '';
-        } else {
-            // Mobile behavior
-            resultsPanel.style.position = 'sticku';
-            resultsPanel.style.bottom = '0';
-            resultsPanel.style.top = '';  // Clear the top
-            resultsPanel.style.width = '90%';
-            resultsPanel.style.transform = 'translateY(calc(100% - 60px))';  // Ensure it's collapsed
-            //resultsPanel.style.backgroundColor = 'red';
-        }
-    }
-
-    window.addEventListener('resize', updateResultsPanelPosition);
-    updateResultsPanelPosition();  // Ensure the correct behavior is applied on load
-
-    // Expand results panel on mobile when scrolled to the bottom of the questionnaire
-    document.addEventListener('scroll', function () {
+    function syncResultsPanelVisibility() {
         if (window.innerWidth <= 960) {
-            const lastQuestion = document.querySelector('.questionnaire-list .slider-question-row:last-child, .questionnaire-list .question-row:last-child');
-
-            if (!lastQuestion) return;
-
-            const lastQuestionBottom = lastQuestion.getBoundingClientRect().bottom;
-            const viewportHeight = window.innerHeight;
-
-            if (lastQuestionBottom <= viewportHeight - 100) {
-                resultsPanel.classList.add('expanded');
-            } else {
-                resultsPanel.classList.remove('expanded');
-            }
+            resultsPanel.style.display = dropdown.value ? 'block' : 'none';
+            return;
         }
-    });
+
+        resultsPanel.style.display = 'block';
+    }
 
     // Hide results panel on mobile until a questionnaire is selected
     dropdown.addEventListener('change', function() {
-        if (window.innerWidth <= 950) { // Ensure we are on mobile
-            if (this.value) { // If a valid selection is made
-                resultsPanel.style.display = 'block'; // Show the results panel
-            } else {
-                resultsPanel.style.display = 'none'; // Hide if no selection
-            }
-        }
+        syncResultsPanelVisibility();
     });
 
     // Optional: Handle window resize to hide the panel if resized to mobile without a selection
     window.addEventListener('resize', function() {
-        if (window.innerWidth <= 950 && !dropdown.value) {
-            resultsPanel.style.display = 'none';
-        }
+        syncResultsPanelVisibility();
     });
-    
+
+    syncResultsPanelVisibility();
 });
 
 
@@ -149,4 +113,3 @@ function updateScore(score) {
     // Update interpretation based on the score
     interpretationElement.textContent = score > 10 ? 'High risk' : 'Low risk';
 }
-
